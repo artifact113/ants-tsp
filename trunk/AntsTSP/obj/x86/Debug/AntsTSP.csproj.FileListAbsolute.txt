@@ -16,3 +16,5 @@ C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\A
 C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\bin\Debug\AntsTSP.exe
 C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\bin\Debug\AntsTSP.pdb
+C:\Users\Alexander\Documents\Universität\3.Semester\Projektmanagement\Fachübergreifendes Labor\Ants_TSP\AntsTSP\obj\x86\Debug\AntsTSP.exe
+C:\Users\Alexander\Documents\Universität\3.Semester\Projektmanagement\Fachübergreifendes Labor\Ants_TSP\AntsTSP\obj\x86\Debug\AntsTSP.pdb
