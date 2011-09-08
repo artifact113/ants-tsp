@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace AntsTSP
 {
-    class LoadTSP
+    public class LoadTSP
     {
-        SortedList<String, Point> koords = new SortedList<string, Point>();
+        List<Point> koords = new List<Point>();
 
-        public SortedList<String, Point> Koords
+        public List<Point> Koords
         {
             get { return koords; }
             set { koords = value; }
@@ -50,7 +50,7 @@ namespace AntsTSP
                     if (areKoords)
                     {
                         String[] vals = line.Split(' ');
-                        koords.Add(vals[0].Trim(), new Point((int)Convert.ToDouble(vals[1].Trim()) / 10, (int)Convert.ToDouble(vals[2].Trim()) / 10));
+                        koords.Add(new Point((int)Convert.ToDouble(vals[1].Trim()) / 10, (int)Convert.ToDouble(vals[2].Trim()) / 10));
                     }
                 }
 
