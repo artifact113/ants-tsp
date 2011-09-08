@@ -9,14 +9,18 @@ using System.Windows.Forms;
 
 namespace AntsTSP
 {
-    public partial class MainForm : Form
+    public partial class FDrawForm : Form
     {
 
         private LoadTSP _tspFile;
 
-        public MainForm()
+        public FDrawForm(LoadTSP load)
         {
             InitializeComponent();
+
+            _tspFile = load;
+
+            Show();
         }
 
         
@@ -28,15 +32,13 @@ namespace AntsTSP
 
             Graphics g = this.CreateGraphics();
             Pen pen = new Pen(Color.Red);
-            foreach (Point pt in _tspFile.Koords.Values)
+            foreach (Point pt in _tspFile.Koords)
             {
-                g.DrawRectangle(pen, pt.X, pt.Y, 1, 1);
+                // Skalierung ist nen test
+                g.DrawRectangle(pen, pt.X/2, pt.Y/2, 4, 4);
             }
         }
 
-        private void _smiTSPLadenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _tspFile = new LoadTSP();
-        }
+             
     }
 }

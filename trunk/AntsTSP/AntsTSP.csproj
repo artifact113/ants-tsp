@@ -52,11 +52,20 @@
     <Compile Include="FDrawForm.Designer.cs">
       <DependentUpon>FDrawForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FUeberwachung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FUeberwachung.Designer.cs">
+      <DependentUpon>FUeberwachung.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadTSP.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FDrawForm.resx">
       <DependentUpon>FDrawForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FUeberwachung.resx">
+      <DependentUpon>FUeberwachung.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
