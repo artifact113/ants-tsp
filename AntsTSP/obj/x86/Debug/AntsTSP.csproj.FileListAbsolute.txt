@@ -1,0 +1,18 @@
+C:\Users\Phili\Documents\Entwicklung\Visual C#\AntsTSP\AntsTSP\bin\Debug\AntsTSP.exe
+C:\Users\Phili\Documents\Entwicklung\Visual C#\AntsTSP\AntsTSP\bin\Debug\AntsTSP.pdb
+C:\Users\Phili\Documents\Entwicklung\Visual C#\AntsTSP\AntsTSP\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Phili\Documents\Entwicklung\Visual C#\AntsTSP\AntsTSP\obj\x86\Debug\AntsTSP.MainForm.resources
+C:\Users\Phili\Documents\Entwicklung\Visual C#\AntsTSP\AntsTSP\obj\x86\Debug\AntsTSP.Properties.Resources.resources
+C:\Users\Phili\Documents\Entwicklung\Visual C#\AntsTSP\AntsTSP\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Phili\Documents\Entwicklung\Visual C#\AntsTSP\AntsTSP\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Phili\Documents\Entwicklung\Visual C#\AntsTSP\AntsTSP\obj\x86\Debug\AntsTSP.exe
+C:\Users\Phili\Documents\Entwicklung\Visual C#\AntsTSP\AntsTSP\obj\x86\Debug\AntsTSP.pdb
+C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\obj\x86\Debug\AntsTSP.exe
+C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\obj\x86\Debug\AntsTSP.pdb
+C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\obj\x86\Debug\AntsTSP.MainForm.resources
+C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\obj\x86\Debug\AntsTSP.Properties.Resources.resources
+C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\bin\Debug\AntsTSP.exe
+C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\bin\Debug\AntsTSP.pdb
