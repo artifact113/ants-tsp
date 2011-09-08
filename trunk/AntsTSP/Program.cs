@@ -17,17 +17,19 @@ namespace AntsTSP
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FInput());
 
-            List<List<City>> field = new List<List<City>>();
 
-            City ci = field[0][0];
+            // Tests zu Listen
+            //List<List<City>> field = new List<List<City>>();
 
-            foreach (List<City> cityRow in field)
-            {
-                foreach (City city in cityRow)
-                {
+            //City ci = field[0][0];
 
-                }
-            }
+            //foreach (List<City> cityRow in field)
+            //{
+            //    foreach (City city in cityRow)
+            //    {
+
+            //    }
+            //}
         }
     }
 }
