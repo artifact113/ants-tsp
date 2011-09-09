@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm.cs" />
     <Compile Include="Structs.cs" />
     <Compile Include="FDrawForm.cs">
       <SubType>Form</SubType>
