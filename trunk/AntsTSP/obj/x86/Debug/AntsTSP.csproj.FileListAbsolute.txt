@@ -19,4 +19,3 @@ C:\Users\Alexander\Documents\Universität\3.Semester\Projektmanagement\Fachüber
 C:\Users\Alexander\Documents\Universität\3.Semester\Projektmanagement\Fachübergreifendes Labor\Ants_TSP\AntsTSP\obj\x86\Debug\AntsTSP.pdb
 C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\obj\x86\Debug\AntsTSP.FDrawForm.resources
 C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\obj\x86\Debug\AntsTSP.FInput.resources
-C:\Dokumente und Einstellungen\Administrator\Eigene Dateien\Entwicklung\VS2010\AntsTSP\AntsTSP\bin\Debug\AntsTSP.exe.config
