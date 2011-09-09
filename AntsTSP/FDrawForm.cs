@@ -35,7 +35,8 @@ namespace AntsTSP
             foreach (Point pt in _tspFile.Koords)
             {
                 // Skalierung ist nen test
-                g.DrawRectangle(pen, pt.X/2, pt.Y/2, 4, 4);
+                //g.DrawRectangle(pen, pt.X/2, pt.Y/2, 4, 4);
+                g.FillRectangle(new SolidBrush(Color.Red), new Rectangle(pt.X\2,pt.Y\Int32,,new Size(4,4)));
             }
         }
 
