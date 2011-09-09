@@ -9,8 +9,21 @@ namespace AntsTSP
     public struct City
     {
         public Point koord;
+        public int key;
         public double phero;
         public double distance;
         public double atractivity;
+    }
+
+    public struct Ant
+    {
+        public int city;
+        public SortedList<int,City> cityList;
+        public double walkedDistance;
+        public void DeleteCityFromList(int key)
+        {
+            if (cityList.ContainsKey(key))
+                cityList.Remove(key);
+        }
     }
 }

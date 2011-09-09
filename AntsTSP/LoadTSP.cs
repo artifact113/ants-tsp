@@ -10,9 +10,9 @@ namespace AntsTSP
 {
     public class LoadTSP
     {
-        List<Point> koords = new List<Point>();
+        SortedList<int,Point> koords = new SortedList<int,Point>();
 
-        public List<Point> Koords
+        public SortedList<int, Point> Koords
         {
             get { return koords; }
             set { koords = value; }
@@ -50,7 +50,7 @@ namespace AntsTSP
                     if (areKoords)
                     {
                         String[] vals = line.Split(' ');
-                        koords.Add(new Point((int)Convert.ToDouble(vals[1].Trim()) / 10, (int)Convert.ToDouble(vals[2].Trim()) / 10));
+                        koords.Add(Convert.ToInt32(vals[0]),new Point((int)Convert.ToDouble(vals[1].Trim()) / 10, (int)Convert.ToDouble(vals[2].Trim()) / 10));
                     }
                 }
 

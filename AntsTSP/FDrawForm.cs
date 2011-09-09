@@ -13,6 +13,7 @@ namespace AntsTSP
     {
 
         private LoadTSP _tspFile;
+        
 
         public FDrawForm(LoadTSP load)
         {
@@ -32,11 +33,11 @@ namespace AntsTSP
 
             Graphics g = this.CreateGraphics();
             Pen pen = new Pen(Color.Red);
-            foreach (Point pt in _tspFile.Koords)
+            foreach (Point pt in _tspFile.Koords.Values)
             {
                 // Skalierung ist nen test
                 //g.DrawRectangle(pen, pt.X/2, pt.Y/2, 4, 4);
-                g.FillRectangle(new SolidBrush(Color.Red), new Rectangle(pt.X\2,pt.Y\Int32,,new Size(4,4)));
+                g.FillRectangle(new SolidBrush(Color.Red), new Rectangle(pt.X/2, pt.Y/2, 4, 4));
             }
         }
 
