@@ -27,3 +27,13 @@ C:\Users\Alexander\Documents\Studium\3. Semester\Universität\Projektmanagement\
 C:\Users\Alexander\Documents\Studium\3. Semester\Universität\Projektmanagement\Fachübergreifendes_Labor\Ants_TSP\AntsTSP\obj\x86\Debug\AntsTSP.Properties.Resources.resources
 C:\Users\Alexander\Documents\Studium\3. Semester\Universität\Projektmanagement\Fachübergreifendes_Labor\Ants_TSP\AntsTSP\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\Alexander\Documents\Studium\3. Semester\Universität\Projektmanagement\Fachübergreifendes_Labor\Ants_TSP\AntsTSP\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Studium\3_Semester\Projektmanagement\Fachübergreifendes Labor\antsTSP\ants-tsp\AntsTSP\obj\x86\Debug\AntsTSP.exe
+D:\Studium\3_Semester\Projektmanagement\Fachübergreifendes Labor\antsTSP\ants-tsp\AntsTSP\obj\x86\Debug\AntsTSP.pdb
+D:\Studium\3_Semester\Projektmanagement\Fachübergreifendes Labor\antsTSP\ants-tsp\AntsTSP\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Studium\3_Semester\Projektmanagement\Fachübergreifendes Labor\antsTSP\ants-tsp\AntsTSP\obj\x86\Debug\AntsTSP.FDrawForm.resources
+D:\Studium\3_Semester\Projektmanagement\Fachübergreifendes Labor\antsTSP\ants-tsp\AntsTSP\obj\x86\Debug\AntsTSP.FInput.resources
+D:\Studium\3_Semester\Projektmanagement\Fachübergreifendes Labor\antsTSP\ants-tsp\AntsTSP\obj\x86\Debug\AntsTSP.Properties.Resources.resources
+D:\Studium\3_Semester\Projektmanagement\Fachübergreifendes Labor\antsTSP\ants-tsp\AntsTSP\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Studium\3_Semester\Projektmanagement\Fachübergreifendes Labor\antsTSP\ants-tsp\AntsTSP\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Studium\3_Semester\Projektmanagement\Fachübergreifendes Labor\antsTSP\ants-tsp\AntsTSP\bin\Debug\AntsTSP.exe
+D:\Studium\3_Semester\Projektmanagement\Fachübergreifendes Labor\antsTSP\ants-tsp\AntsTSP\bin\Debug\AntsTSP.pdb
