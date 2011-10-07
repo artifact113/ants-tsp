@@ -17,6 +17,7 @@ namespace AntsTSP
 
     public struct Ant
     {
+        public int firstCity;
         public int city;
         public SortedList<int,City> cityList;
         public double walkedDistance;

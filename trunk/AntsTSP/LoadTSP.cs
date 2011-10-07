@@ -18,6 +18,8 @@ namespace AntsTSP
             set { koords = value; }
         }
 
+        
+
 
         public LoadTSP()
         {
