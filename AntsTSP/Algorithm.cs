@@ -114,8 +114,7 @@ namespace AntsTSP
                     {
                         dist = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
                         phero = _tau;
-                        atractivity = 1 / dist;
-                        
+                        atractivity = 1 / dist;                        
                     }
                     City currCity = new City();
                     currCity.key = _tsp.Koords.Keys[col];
@@ -124,7 +123,7 @@ namespace AntsTSP
                     currCity.phero = phero;
                     currCity.koord = new Point(x2, y2);
                     
-                    _cityList[_tsp.Koords.Keys[row]].Add(_tsp.Koords.Keys[col],currCity);                
+                    _cityList[_tsp.Koords.Keys[row]].Add(_tsp.Koords.Keys[col],currCity);
                 }
             }
         }
@@ -134,44 +133,98 @@ namespace AntsTSP
         #region algorithm
 
         private void TryToSolveAntsTSP()
-        {
-            int iter = 0;
-            SortedList<int,double> likelinessList = new SortedList<int,double>(); // Key: city Value: likeliness
-            do
+        {            
+                        
+
+            for (int iter = 0; iter < _iterCount; iter++ )
             {
-                iter += 1; // initial
-
-                foreach (Ant ant in _antList)
+                if (iter == 51)
                 {
-                    double sum = .0;
-                    foreach(City c in ant.cityList.Values)
-                    {
-                        int small = c.key;
-                        int big = ant.city;
-                        CheckIndices(ref small, ref big);
-                        sum += Math.Pow(_cityList[small][big].phero, _alpha) * Math.Pow(_cityList[small][big].atractivity, _beta);
-                    }
 
-                    foreach(City city in ant.cityList.Values)
+                }
+                for (int antPos = 0; antPos < _antList.Count; antPos++ )
+                {
+                    double highestLikeliness = .0;
+                    int keyToHighestLikeliness = -1;
+
+                    foreach (City city in _antList[antPos].cityList.Values)
                     {
+                        // Nenner der Formel
+                        double sum = .0;
+                        int smallForNenner = -1;
+                        int bigForNenner = -1;
+
+                        foreach (City c in _antList[antPos].cityList.Values)
+                        {                            
+                            smallForNenner = c.key;
+                            bigForNenner = _antList[antPos].city;
+                            CheckIndices(ref smallForNenner, ref bigForNenner);
+                            
+                            sum += Math.Pow(_cityList[smallForNenner][bigForNenner].phero, _alpha) * Math.Pow(_cityList[smallForNenner][bigForNenner].atractivity, _beta);                            
+                        }
+                        
                         int small = city.key;
-                        int big = ant.city;
+                        int big = _antList[antPos].city;
                         CheckIndices(ref small, ref big);
 
-                        double likeliness = (Math.Pow(_cityList[small][big].phero, _alpha)*Math.Pow(_cityList[small][big].atractivity, _beta))
-                            /(sum);
+                        double likeliness = (Math.Pow(_cityList[small][big].phero, _alpha)
+                            * Math.Pow(_cityList[small][big].atractivity, _beta))
+                            / (sum);
+                        
 
-                        likelinessList.Add(city.key, likeliness);                        
+                        if (highestLikeliness <= likeliness)
+                        {
+                            highestLikeliness = likeliness;
+                            keyToHighestLikeliness = city.key;
+                        }
+
+                        
                     }
-                    // TODO höchsten likeliness-Wert auslesen und Pheromonupdate ausführen
-                    // TODO dann Ameise in diese Richtung schicken
-                    
+
+                    // Update walked distance
+                    int keyFrom = _antList[antPos].city;
+                    int keyTo = keyToHighestLikeliness;                    
+                    CheckIndices(ref keyFrom, ref keyTo);
+                    double dist = _cityList[keyFrom][keyTo].distance;
+
+                    // Ameise in neue Stadt setzen und neue Stadt aus Ameisenstädte löschen
+                    Ant ant = _antList[antPos];
+                        // distance addieren
+                    ant.walkedDistance += dist; 
+                    ant.city = keyToHighestLikeliness;
+                    ant.DeleteCityFromList(keyToHighestLikeliness);
+                    _antList[antPos] = ant;
+
+                    // TODO Pheromonupdate ausführen
+                    UpdatePheromon(keyFrom, keyTo, ant.walkedDistance);
                 }
 
 
-            } while (iter <= _iterCount);
+            } 
         }
 
+        private void UpdatePheromon(int currRow, int currCol, double walkedDist)
+        {
+            for (int row = 1; row <= _cityList.Count; row++)
+            {
+                int col = row;
+
+                for (; col <= _cityList[row].Count; col++)
+                {
+                    int x = row;
+                    int y = col;
+                    CheckIndices(ref x, ref y);
+
+                    double deltaTau = .0;
+                    if ((row == currRow) && (col == currCol))
+                        deltaTau = _q/walkedDist;
+
+                    City city = _cityList[x][y];
+                    city.phero = (1 - _rho) * _cityList[x][y].phero + deltaTau;                    
+                    _cityList[x][y] = city;
+                }
+            }
+        }
 
         private void UpdateTime()
         {
@@ -187,7 +240,7 @@ namespace AntsTSP
             {
                 swap = small;
                 small = big;
-                big = small;
+                big = swap;
             }
         }
 

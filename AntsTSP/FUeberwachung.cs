@@ -64,10 +64,14 @@ namespace AntsTSP
         /// </summary>
         /// <param name="?"></param>
         /// <returns></returns>
-        private bool CheckIfBetween(double num, double a, double b)
+        private bool CheckIfBetween(double num, double a, double b, bool biggerA)
         {
+            if (!biggerA && ((num >= a && num <= b)))
+                return true;
+
             if (num > a && num <= b)
                 return true;
+
             return false;
         }
 
@@ -118,7 +122,8 @@ namespace AntsTSP
                     _tbIterationCount.BackColor = (_iterCountFehlerfrei) ? _okCol : _errCol;
                     break;
                 case "_tbAlpha":
-                    _alphaFehlerfrei = CheckIfDouble(_tbAlpha.Text);
+                    double num;
+                    _alphaFehlerfrei = Double.TryParse(_tbAlpha.Text, out num) && CheckIfBetween(num, 0, 1, false);
                     _tbAlpha.BackColor = (_alphaFehlerfrei) ? _okCol : _errCol;
                     break;
                 case "_tbBeta":
@@ -126,7 +131,7 @@ namespace AntsTSP
                     _tbBeta.BackColor = (_betaFehlerfrei) ? _okCol : _errCol;
                     break;
                 case "_tbRho":
-                    _rhoFehlerfrei = CheckIfDouble(_tbRho.Text) && CheckIfBetween(double.Parse(_tbRho.Text), 0, 1);
+                    _rhoFehlerfrei = CheckIfDouble(_tbRho.Text) && CheckIfBetween(double.Parse(_tbRho.Text), 0, 1, true);
                     _tbRho.BackColor = (_rhoFehlerfrei) ? _okCol : _errCol;
                     break;
                 case "_tbTau":

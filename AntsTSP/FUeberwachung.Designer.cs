@@ -64,6 +64,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._smiTSPLadenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tODOErgsSpeichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._gbOutput.SuspendLayout();
             this._gbAvrg.SuspendLayout();
             this._gbBest.SuspendLayout();
@@ -306,7 +307,7 @@
             this._tbAlpha.Size = new System.Drawing.Size(98, 20);
             this._tbAlpha.TabIndex = 9;
             this._tbAlpha.Text = "1";
-            this._ttInputTooltip.SetToolTip(this._tbAlpha, "Pheromon Parameter (Alpha > 0)");
+            this._ttInputTooltip.SetToolTip(this._tbAlpha, "Pheromon Parameter (0 <= Alpha <= 0)");
             this._tbAlpha.TextChanged += new System.EventHandler(this.TextChanged);
             // 
             // _lblAlpha
@@ -317,7 +318,7 @@
             this._lblAlpha.Size = new System.Drawing.Size(34, 13);
             this._lblAlpha.TabIndex = 8;
             this._lblAlpha.Text = "Alpha";
-            this._ttInputTooltip.SetToolTip(this._lblAlpha, "Pheromon Parameter (Alpha > 0)");
+            this._ttInputTooltip.SetToolTip(this._lblAlpha, "Pheromon Parameter (0 <= Alpha <= 0)");
             // 
             // _tbIterationCount
             // 
@@ -383,7 +384,8 @@
             // dateiToolStripMenuItem
             // 
             this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._smiTSPLadenToolStripMenuItem});
+            this._smiTSPLadenToolStripMenuItem,
+            this.tODOErgsSpeichernToolStripMenuItem});
             this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
             this.dateiToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.dateiToolStripMenuItem.Text = "Datei";
@@ -391,9 +393,15 @@
             // _smiTSPLadenToolStripMenuItem
             // 
             this._smiTSPLadenToolStripMenuItem.Name = "_smiTSPLadenToolStripMenuItem";
-            this._smiTSPLadenToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this._smiTSPLadenToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this._smiTSPLadenToolStripMenuItem.Text = "... TSP laden";
             this._smiTSPLadenToolStripMenuItem.Click += new System.EventHandler(this._smiTSPLadenToolStripMenuItem_Click);
+            // 
+            // tODOErgsSpeichernToolStripMenuItem
+            // 
+            this.tODOErgsSpeichernToolStripMenuItem.Name = "tODOErgsSpeichernToolStripMenuItem";
+            this.tODOErgsSpeichernToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.tODOErgsSpeichernToolStripMenuItem.Text = "//TODO ergs speichern";
             // 
             // FInput
             // 
@@ -458,5 +466,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _smiTSPLadenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tODOErgsSpeichernToolStripMenuItem;
     }
 }
