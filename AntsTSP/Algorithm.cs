@@ -43,12 +43,12 @@ namespace AntsTSP
             _owner = fInput;
 
             // init
-            
             InitCityList();
             InitAnts();
             _startTime = DateTime.Now;
 
-            TryToSolveAntsTSP();
+            NewAlgorithm();
+            UpdateTime();
         }
 
         
@@ -132,98 +132,102 @@ namespace AntsTSP
 
         #region algorithm
 
-        private void TryToSolveAntsTSP()
-        {            
-                        
-
-            for (int iter = 0; iter < _iterCount; iter++ )
+        private void NewAlgorithm()
+        {
+            List<City> currentWay = new List<City>();
+            //für jede Ameise
+            for (int iterAnt = 0; iterAnt < _antList.Count; iterAnt++)
             {
-                if (iter == 51)
-                {
+                Ant ant = _antList[iterAnt];
 
-                }
-                for (int antPos = 0; antPos < _antList.Count; antPos++ )
+                while (_antList[iterAnt].cityList.Count > 0)
                 {
                     double highestLikeliness = .0;
-                    int keyToHighestLikeliness = -1;
+                    int keyToHighestLikeliness = -1;                    
 
-                    foreach (City city in _antList[antPos].cityList.Values)
+                    //für jede noch nicht besuchte Stadt der Ameise die likeliness berechnen
+                    foreach(City cityToGo in _antList[iterAnt].cityList.Values)
                     {
                         // Nenner der Formel
                         double sum = .0;
                         int smallForNenner = -1;
                         int bigForNenner = -1;
 
-                        foreach (City c in _antList[antPos].cityList.Values)
-                        {                            
+                        //Berechnung des Nenners
+                        foreach (City c in _antList[iterAnt].cityList.Values)
+                        {
                             smallForNenner = c.key;
-                            bigForNenner = _antList[antPos].city;
+                            bigForNenner = _antList[iterAnt].city;
                             CheckIndices(ref smallForNenner, ref bigForNenner);
-                            
-                            sum += Math.Pow(_cityList[smallForNenner][bigForNenner].phero, _alpha) * Math.Pow(_cityList[smallForNenner][bigForNenner].atractivity, _beta);                            
+
+                            sum += Math.Pow(_cityList[smallForNenner][bigForNenner].phero, _alpha)
+                                * Math.Pow(_cityList[smallForNenner][bigForNenner].atractivity, _beta);
                         }
-                        
-                        int small = city.key;
-                        int big = _antList[antPos].city;
+                        int small = cityToGo.key;
+                        int big = _antList[iterAnt].city;
                         CheckIndices(ref small, ref big);
 
                         double likeliness = (Math.Pow(_cityList[small][big].phero, _alpha)
                             * Math.Pow(_cityList[small][big].atractivity, _beta))
                             / (sum);
-                        
 
-                        if (highestLikeliness <= likeliness)
+                        if (!((Double)likeliness).Equals(Double.NaN))
                         {
-                            highestLikeliness = likeliness;
-                            keyToHighestLikeliness = city.key;
+                            if (highestLikeliness <= likeliness)
+                            {
+                                highestLikeliness = likeliness;
+                                keyToHighestLikeliness = cityToGo.key;
+                            }
                         }
-
-                        
-                    }
+                        else
+                        {
+                            keyToHighestLikeliness = _antList[iterAnt].cityList.Keys[0];                 
+                        }
+                    }//Ende der Auswahl der nächsten Stadt
 
                     // Update walked distance
-                    int keyFrom = _antList[antPos].city;
-                    int keyTo = keyToHighestLikeliness;                    
-                    CheckIndices(ref keyFrom, ref keyTo);
-                    double dist = _cityList[keyFrom][keyTo].distance;
+                    if (keyToHighestLikeliness >= 0)
+                    {
+                        int keyFrom = _antList[iterAnt].city;
+                        int keyTo = keyToHighestLikeliness;
+                        CheckIndices(ref keyFrom, ref keyTo);
+                        double dist = _cityList[keyFrom][keyTo].distance;
 
-                    // Ameise in neue Stadt setzen und neue Stadt aus Ameisenstädte löschen
-                    Ant ant = _antList[antPos];
+                        // Ameise in neue Stadt setzen und neue Stadt aus Ameisenstädte löschen
                         // distance addieren
-                    ant.walkedDistance += dist; 
-                    ant.city = keyToHighestLikeliness;
-                    ant.DeleteCityFromList(keyToHighestLikeliness);
-                    _antList[antPos] = ant;
-
-                    // TODO Pheromonupdate ausführen
-                    UpdatePheromon(keyFrom, keyTo, ant.walkedDistance);
-                }
-
-
-            } 
-        }
-
-        private void UpdatePheromon(int currRow, int currCol, double walkedDist)
-        {
-            for (int row = 1; row <= _cityList.Count; row++)
-            {
-                int col = row;
-
-                for (; col <= _cityList[row].Count; col++)
+                        ant.walkedDistance += dist;
+                        ant.city = keyToHighestLikeliness;
+                        currentWay.Add(_cityList[keyFrom][keyTo]);
+                        ant.DeleteCityFromList(keyToHighestLikeliness);
+                        _antList[iterAnt] = ant;
+                    }
+                    
+                }//Ameise ist alle Städte einmal durchgelaufen
+                
+                //Pheromonupdate ausführen
+                for (int row = 1; row <= _cityList.Count; row++)
                 {
-                    int x = row;
-                    int y = col;
-                    CheckIndices(ref x, ref y);
+                    for(int col = row; col < _cityList[row].Values.Count;col++)
+                    {
+                        int small = row;
+                        int big = col;
+                        CheckIndices(ref small, ref big);
+                        City city = _cityList[small][big];
 
-                    double deltaTau = .0;
-                    if ((row == currRow) && (col == currCol))
-                        deltaTau = _q/walkedDist;
+                        double deltaTau = .0;
+                        if(currentWay.Contains(city))
+                        {
+                            deltaTau = _q / ant.walkedDistance;
+                        }
 
-                    City city = _cityList[x][y];
-                    city.phero = (1 - _rho) * _cityList[x][y].phero + deltaTau;                    
-                    _cityList[x][y] = city;
+                        city.phero = (1 - _rho) *
+                            city.phero + deltaTau;
+
+                        _cityList[small][big] = city;
+                    }
                 }
-            }
+
+            }//Alle Ameisen sind durchgelaufen
         }
 
         private void UpdateTime()
