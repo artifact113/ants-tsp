@@ -73,7 +73,7 @@ namespace AntsTSP
 
             if((_wayAsArray != null) && (_wayAsArray.Length > 1))
             {                
-                g.DrawLines(pen, _wayAsArray);
+                g.DrawPolygon(pen, _wayAsArray);
             }            
         }             
     }

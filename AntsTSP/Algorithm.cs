@@ -6,6 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Threading;
+
+//TODOs:
+//Wenn der OpenFile-Dialog abgebrochen wird, geht trotzdem ein Fenster auf
+//Wenn bereits ein TSP-File geladen ist und ein 2. Mal auf Laden geklickt wird, wirft er nach dem Start eine Exception, weil sich das Prog. auf den falschen Thread bezieht
+//Algo-Schummelei anpassen (mit den optim. Parametern)
+//Global total = iter Total ???
+//Benamsung der Delegate anpassen
+
 namespace AntsTSP
 {
     public class Algorithm
@@ -28,9 +37,19 @@ namespace AntsTSP
         private FInput _owner;
         private FDrawForm _drawForm;
 
+        private double _bestTourGloabl;
+        private double _bestTourIter;
+        private double _avrTourGloabl;
+        private double _avrTourIter;
+
         private delegate void UpdateWayByStepInvoker(Point pnt);
         private delegate void UpdateWayByAntInvoker(ArrayList points);
-        private delegate void StopTimerInvoker();
+        private delegate void StopTimerInvoker(String span);
+        private delegate void GlobalWayTotalInvoker(String global);
+        private delegate void GlobalWayIterInvoker(String global);
+        private delegate void AVRWayTotalInvoker(String iter);
+        private delegate void AVRWayIterInvoker(String iter);
+        
                         
 
         #endregion
@@ -56,9 +75,16 @@ namespace AntsTSP
             InitAnts();
             _startTime = DateTime.Now;
 
-            TryToSolveTSP();
-            UpdateTime();
+            _bestTourGloabl = double.PositiveInfinity;
+            _bestTourIter = double.PositiveInfinity;
+
+            Thread solveTSPThread = new Thread(new ThreadStart(TryToSolveTSP));
+            solveTSPThread.Start();
+
+            //TryToSolveTSP();
+            //UpdateTime();
         }
+
 
         
 
@@ -145,7 +171,12 @@ namespace AntsTSP
         private void TryToSolveTSP()
         {
             for (int iter = 0; iter < _iterCount; iter++)
-            {                
+            {
+                _owner.Invoke(new GlobalWayIterInvoker(_owner.SetBestTourIter), "0");
+                _owner.Invoke(new AVRWayIterInvoker(_owner.SetAVRIter), "0");
+                _bestTourIter = double.PositiveInfinity;
+                _avrTourIter = 0;
+
                 List<City> currentWay = new List<City>();
                 //für jede Ameise
                 for (int iterAnt = 0; iterAnt < _antList.Count; iterAnt++)
@@ -226,9 +257,6 @@ namespace AntsTSP
 
                     }//Ameise ist alle Städte einmal durchgelaufen
 
-                    // GUI aktualisieren --> Test
-                    _drawForm.Invoke(new UpdateWayByAntInvoker(_drawForm.ShowCurrentWay), points);
-
                     // TODO hier nochmal überdenken
                     // die Ameise wird nicht zurückgeschrieben
                     // muss das???
@@ -237,6 +265,15 @@ namespace AntsTSP
                     CheckIndices(ref smallCity, ref bigCity);
                     double newDist = _cityList[smallCity][bigCity].distance;
                     ant.walkedDistance += newDist;
+                    ant.city = ant.firstCity;
+                    int x2 = _tsp.Koords[ant.city].X;
+                    int y2 = _tsp.Koords[ant.city].Y;
+                    points.Add(new Point(x2, y2));
+
+                    // GUI aktualisieren
+                    UpdateLength(iterAnt); //geht nicht, weil das Ausgabefenster nicht im eigenen Thread läuft
+                    _drawForm.Invoke(new UpdateWayByAntInvoker(_drawForm.ShowCurrentWay), points);
+                    
 
                     //Pheromonupdate ausführen
                     for (int row = 1; row <= _cityList.Count; row++)
@@ -263,13 +300,8 @@ namespace AntsTSP
 
                 }//Alle Ameisen sind für diese Iteration durchgelaufen
                 InitAnts();
-            }//Alle Iterationen sind beendet            
-        }
-
-        private void UpdateTime()
-        {
-            TimeSpan span = DateTime.Now - _startTime;
-            _owner.SetLBLTimeText("Zeit: "+span.Minutes+":"+span.Seconds+":"+span.Milliseconds);            
+            }//Alle Iterationen sind beendet
+            UpdateTime();
         }
 
         private void CheckIndices(ref int small, ref int big)
@@ -285,5 +317,38 @@ namespace AntsTSP
 
         #endregion
 
+        #region updateMethods
+
+        private void UpdateLength(int iterAnt)
+        {
+            if (_antList[iterAnt].walkedDistance < _bestTourGloabl)
+            {
+                _bestTourGloabl = _antList[iterAnt].walkedDistance;
+                _owner.Invoke(new GlobalWayTotalInvoker(_owner.SetBestTourGlobal), _bestTourGloabl.ToString());
+            }
+            if (_antList[iterAnt].walkedDistance < _bestTourIter)
+            {
+                _bestTourIter = _antList[iterAnt].walkedDistance;
+                _owner.Invoke(new GlobalWayIterInvoker(_owner.SetBestTourIter), _bestTourIter.ToString());
+            }
+            _avrTourGloabl = _avrTourGloabl * (_iterCount - 1) / _iterCount + _antList[iterAnt].walkedDistance / _iterCount;
+            _avrTourIter = _avrTourIter * (_antCount - 1) / _antCount + _antList[iterAnt].walkedDistance / _antCount;
+
+            //_drawForm.Invoke(new UpdateWayByAntInvoker(_drawForm.ShowCurrentWay), points);
+
+            _owner.Invoke(new AVRWayTotalInvoker(_owner.SetAVRGlobal), _avrTourGloabl.ToString());
+            _owner.Invoke(new AVRWayIterInvoker(_owner.SetAVRIter), _avrTourIter.ToString());
+
+
+        }
+
+        private void UpdateTime()
+        {
+            TimeSpan span = DateTime.Now - _startTime;
+            //_owner.SetLBLTimeText("Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds);
+            _owner.Invoke(new StopTimerInvoker(_owner.SetLBLTimeText), "Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds);
+        }
+
+        #endregion
     }
 }

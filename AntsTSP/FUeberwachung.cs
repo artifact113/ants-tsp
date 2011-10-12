@@ -161,9 +161,6 @@ namespace AntsTSP
                 return;
             }
 
-            
-
-
             _algorithm = new Algorithm(this, _tspFile, _drawForm, double.Parse(_tbTau.Text),
                 double.Parse(_tbQ.Text),
                 double.Parse(_tbRho.Text),
@@ -171,23 +168,44 @@ namespace AntsTSP
                 double.Parse(_tbBeta.Text),
                 int.Parse(_tbIterationCount.Text),
                 int.Parse(_tbAntCount.Text));
-
         }
 
         #endregion
 
-        
+        public void ShowDrawForm()
+        {
+            this.ShowDialog();
+        }
 
         internal void SetLBLTimeText(string p)
         {
             _lblTime.Text = p;
         }
-
         
         private void _timer_Tick(object sender, EventArgs e)
         {
             TimeSpan span = DateTime.Now - _startTime;
             _lblTime.Text = "Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds;
-        }        
+        }
+
+        internal void SetBestTourGlobal(String global)
+        {
+            _tbBestGlob.Text = global;
+        }
+
+        internal void SetBestTourIter(String iter)
+        {
+            _tbBestIter.Text = iter;
+        }
+
+        internal void SetAVRGlobal(String global)
+        {
+            _tbAVRGlob.Text = global;
+        }
+
+        internal void SetAVRIter(String iter)
+        {
+            _tbAVRIter.Text = iter;
+        }
     }
 }
