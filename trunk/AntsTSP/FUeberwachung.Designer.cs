@@ -411,6 +411,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this._gbConfig);
             this.Controls.Add(this._gbOutput);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FInput";

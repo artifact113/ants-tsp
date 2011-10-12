@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace AntsTSP
     public partial class FInput : Form
     {
         #region private Fields
+
 
         private FDrawForm _drawForm;
         private Color _errCol = Color.Yellow;
@@ -29,16 +31,16 @@ namespace AntsTSP
         private bool _tauFehlerfrei = false;
         private bool _qFehlerfrei = false;
 
+        private DateTime _startTime;
+
         #endregion
 
         public FInput()
         {
             InitializeComponent();
+        }
 
-            MaximumSize = Size;
-            MinimumSize = Size;
-        }       
-
+        
 
         #region checkfied-Methods
 
@@ -148,7 +150,7 @@ namespace AntsTSP
 
         private void _btnStart_Click(object sender, EventArgs e)
         {
-            if (!CheckIfValid) 
+            if (!CheckIfValid)
             {
                 MessageBox.Show(this, "Die eingegebenen Daten sind unvollständig oder fehlerhaft!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -159,20 +161,33 @@ namespace AntsTSP
                 return;
             }
 
-            _algorithm = new Algorithm(this,_tspFile, _drawForm, double.Parse(_tbTau.Text),
+            
+
+
+            _algorithm = new Algorithm(this, _tspFile, _drawForm, double.Parse(_tbTau.Text),
                 double.Parse(_tbQ.Text),
                 double.Parse(_tbRho.Text),
                 double.Parse(_tbAlpha.Text),
                 double.Parse(_tbBeta.Text),
                 int.Parse(_tbIterationCount.Text),
                 int.Parse(_tbAntCount.Text));
+
         }
 
         #endregion
+
+        
 
         internal void SetLBLTimeText(string p)
         {
             _lblTime.Text = p;
         }
+
+        
+        private void _timer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan span = DateTime.Now - _startTime;
+            _lblTime.Text = "Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds;
+        }        
     }
 }

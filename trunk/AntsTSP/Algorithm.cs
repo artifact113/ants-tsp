@@ -28,8 +28,10 @@ namespace AntsTSP
         private FInput _owner;
         private FDrawForm _drawForm;
 
-        private delegate void UpdateWayInvoker(Point pnt);
-                
+        private delegate void UpdateWayByStepInvoker(Point pnt);
+        private delegate void UpdateWayByAntInvoker(ArrayList points);
+        private delegate void StopTimerInvoker();
+                        
 
         #endregion
 
@@ -143,14 +145,14 @@ namespace AntsTSP
         private void TryToSolveTSP()
         {
             for (int iter = 0; iter < _iterCount; iter++)
-            {
+            {                
                 List<City> currentWay = new List<City>();
                 //für jede Ameise
                 for (int iterAnt = 0; iterAnt < _antList.Count; iterAnt++)
                 {
                     Ant ant = _antList[iterAnt];      
                     
-                    _drawForm.Way = new ArrayList();
+                    ArrayList points = new ArrayList();
 
                     while (_antList[iterAnt].cityList.Count > 0)
                     {
@@ -160,6 +162,7 @@ namespace AntsTSP
                         //für jede noch nicht besuchte Stadt der Ameise die likeliness berechnen
                         foreach (City cityToGo in _antList[iterAnt].cityList.Values)
                         {
+                            
                             // Nenner der Formel
                             double sum = .0;
                             int smallForNenner = -1;
@@ -215,14 +218,20 @@ namespace AntsTSP
                           
                             int x = _tsp.Koords[keyToHighestLikeliness].X;
                             int y = _tsp.Koords[keyToHighestLikeliness].Y;
+                            points.Add(new Point(x,y));
 
-                            // GUI aktualisieren
-                            _drawForm.Invoke(new UpdateWayInvoker(_drawForm.AddPointToWay), new Point(x, y));
-                            _drawForm.Invoke(new MethodInvoker(_drawForm.Update));
+                            // GUI aktualisieren --> Test
+                            //_drawForm.Invoke(new UpdateWayByStepInvoker(_drawForm.AddPointToWay), new Point(x, y));
                         }
 
                     }//Ameise ist alle Städte einmal durchgelaufen
 
+                    // GUI aktualisieren --> Test
+                    _drawForm.Invoke(new UpdateWayByAntInvoker(_drawForm.ShowCurrentWay), points);
+
+                    // TODO hier nochmal überdenken
+                    // die Ameise wird nicht zurückgeschrieben
+                    // muss das???
                     int smallCity = ant.city;
                     int bigCity = ant.firstCity;
                     CheckIndices(ref smallCity, ref bigCity);
@@ -254,14 +263,13 @@ namespace AntsTSP
 
                 }//Alle Ameisen sind für diese Iteration durchgelaufen
                 InitAnts();
-            }//Alle Iterationen sind beendet
+            }//Alle Iterationen sind beendet            
         }
 
         private void UpdateTime()
         {
             TimeSpan span = DateTime.Now - _startTime;
-            _owner.SetLBLTimeText("Zeit: "+Convert.ToString(span));
-
+            _owner.SetLBLTimeText("Zeit: "+span.Minutes+":"+span.Seconds+":"+span.Milliseconds);            
         }
 
         private void CheckIndices(ref int small, ref int big)

@@ -16,6 +16,8 @@ namespace AntsTSP
 
         private LoadTSP _tspFile;
         private ArrayList _way = new ArrayList();
+        private Point[] _wayAsArray;
+        private bool _init = true;
 
         private const int _skal = 2;
 
@@ -27,7 +29,19 @@ namespace AntsTSP
 
         public void AddPointToWay(Point pnt)
         {
-            _way.Add(pnt);
+            _way.Add(new Point(pnt.X/_skal, pnt.Y/_skal));
+            _wayAsArray = (Point[])_way.ToArray(typeof(Point));
+            this.Refresh();
+        }
+
+        public void ShowCurrentWay(ArrayList points)
+        {
+            _wayAsArray = new Point[points.Count];
+            for (int i = 0; i < points.Count; i++)
+            {
+                _wayAsArray[i] = new Point(((Point)points[i]).X / _skal, ((Point)points[i]).Y / _skal);
+            }
+            this.Refresh();
         }
 
         public FDrawForm(LoadTSP load)
@@ -35,13 +49,14 @@ namespace AntsTSP
             InitializeComponent();
 
             _tspFile = load;
-            Thread t = new Thread(new ThreadStart(Show));
+            Thread t = new Thread(new ThreadStart(ShowDrawForm));
             t.Start();
-            Visible = true;
         }
 
-        
-        
+        private void ShowDrawForm()
+        {
+            this.ShowDialog();
+        }
 
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
@@ -50,21 +65,15 @@ namespace AntsTSP
 
             Graphics g = this.CreateGraphics();
             Pen pen = new Pen(Color.Red);
+
             foreach (Point pt in _tspFile.Koords.Values)
             {
-                // Skalierung ist nen test
-                //g.DrawRectangle(pen, pt.X/2, pt.Y/2, 4, 4);
-                g.FillRectangle(new SolidBrush(Color.Red), new Rectangle(pt.X/_skal, pt.Y/_skal, 4, 4));
+                g.FillRectangle(new SolidBrush(Color.Red), new Rectangle(pt.X / _skal, pt.Y / _skal, 4, 4));
             }
 
-            if(_way.Count > 1)
-            {
-                Point[] pnts = new Point[_way.Count];
-                for (int i = 0; i < pnts.Length; i++ )
-                {
-                    pnts[i] = new Point(((Point)Way[i]).X / _skal, ((Point)Way[i]).Y / _skal);
-                }
-                g.DrawLines(pen, pnts);
+            if((_wayAsArray != null) && (_wayAsArray.Length > 1))
+            {                
+                g.DrawLines(pen, _wayAsArray);
             }            
         }             
     }
