@@ -98,9 +98,10 @@ namespace AntsTSP
 
             for (int i = 1; i <= _antCount; i++)
             {
-                if (cityNum > _cityList.Count)
-                    cityNum = 1;
+                //if (cityNum > _cityList.Count)
+                //    cityNum = 1;
 
+                cityNum = RandomNumber(1, _cityList.ElementAt(0).Value.Count);
                 Ant currentAnt = new Ant();
                 currentAnt.walkedDistance = .0;
                 currentAnt.firstCity = cityNum;
@@ -111,7 +112,7 @@ namespace AntsTSP
 
                 _antList.Add(currentAnt);
 
-                cityNum += 1;
+                //cityNum += 1;
             }
         }
 
@@ -314,6 +315,11 @@ namespace AntsTSP
                 small = big;
                 big = swap;
             }
+        }
+
+        private int RandomNumber(int min, int max)
+        {
+            return min + (new Random()).Next(max - min);
         }
 
         #endregion
