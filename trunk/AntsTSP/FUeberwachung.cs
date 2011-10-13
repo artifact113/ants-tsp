@@ -32,15 +32,18 @@ namespace AntsTSP
         private bool _qFehlerfrei = false;
 
         private DateTime _startTime;
+        private System.Windows.Forms.Timer _timer;
 
         #endregion
+
+        #region constructors
 
         public FInput()
         {
             InitializeComponent();
         }
 
-        
+        #endregion        
 
         #region checkfied-Methods
 
@@ -172,6 +175,12 @@ namespace AntsTSP
                 return;
             }
 
+            _startTime = DateTime.Now;
+            _timer = new System.Windows.Forms.Timer();
+            _timer.Tick += new EventHandler(SetTimer);
+            _timer.Interval = 100;
+            _timer.Start();
+
             _algorithm = new Algorithm(this, _tspFile, _drawForm, double.Parse(_tbTau.Text),
                 double.Parse(_tbQ.Text),
                 double.Parse(_tbRho.Text),
@@ -191,8 +200,18 @@ namespace AntsTSP
         internal void SetLBLTimeText(string p)
         {
             _lblTime.Text = p;
-        }        
+        }
         
+        private void SetTimer(object sender, EventArgs e)
+        {
+            TimeSpan span = DateTime.Now - _startTime;
+            _lblTime.Text = "Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds;
+        }
+
+        public void StopTimer()
+        {
+            _timer.Stop();
+        }
 
         internal void SetBestTourGlobal(String global)
         {

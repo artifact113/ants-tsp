@@ -44,11 +44,11 @@ namespace AntsTSP
 
         private delegate void UpdateWayByStepInvoker(Point pnt);
         private delegate void UpdateWayByAntInvoker(ArrayList points);
-        private delegate void StopTimerInvoker(String span);
         private delegate void GlobalWayTotalInvoker(String global);
         private delegate void GlobalWayIterInvoker(String global);
         private delegate void AVRWayTotalInvoker(String iter);
         private delegate void AVRWayIterInvoker(String iter);
+        private delegate void StopTimerInvoker();
         
                         
 
@@ -301,7 +301,8 @@ namespace AntsTSP
                 }//Alle Ameisen sind für diese Iteration durchgelaufen
                 InitAnts();
             }//Alle Iterationen sind beendet
-            UpdateTime();
+            //UpdateTime();
+            _owner.Invoke(new StopTimerInvoker(_owner.StopTimer));
         }
 
         private void CheckIndices(ref int small, ref int big)
@@ -340,14 +341,7 @@ namespace AntsTSP
             _owner.Invoke(new AVRWayIterInvoker(_owner.SetAVRIter), _avrTourIter.ToString());
 
 
-        }
-
-        private void UpdateTime()
-        {
-            TimeSpan span = DateTime.Now - _startTime;
-            //_owner.SetLBLTimeText("Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds);
-            _owner.Invoke(new StopTimerInvoker(_owner.SetLBLTimeText), "Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds);
-        }
+        }        
 
         #endregion
     }
