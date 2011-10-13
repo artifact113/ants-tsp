@@ -102,6 +102,17 @@ namespace AntsTSP
             _drawForm = new FDrawForm(_tspFile);
         }
 
+        private void tODOErgsSpeichernToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Speichern ...";
+            sfd.Filter = sfd.Filter = "xml files (*.xml)|*.xml";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string path = sfd.FileName;
+            }
+        }
+
         private void TextChanged(object sender, EventArgs e)
         {
             Control ctrl = (Control)sender;
@@ -180,13 +191,8 @@ namespace AntsTSP
         internal void SetLBLTimeText(string p)
         {
             _lblTime.Text = p;
-        }
+        }        
         
-        private void _timer_Tick(object sender, EventArgs e)
-        {
-            TimeSpan span = DateTime.Now - _startTime;
-            _lblTime.Text = "Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds;
-        }
 
         internal void SetBestTourGlobal(String global)
         {
@@ -207,5 +213,7 @@ namespace AntsTSP
         {
             _tbAVRIter.Text = iter;
         }
+
+        
     }
 }
