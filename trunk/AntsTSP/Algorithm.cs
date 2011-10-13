@@ -13,7 +13,6 @@ using System.Threading;
 //Wenn bereits ein TSP-File geladen ist und ein 2. Mal auf Laden geklickt wird, wirft er nach dem Start eine Exception, weil sich das Prog. auf den falschen Thread bezieht
 //Algo-Schummelei anpassen (mit den optim. Parametern)
 
-
 namespace AntsTSP
 {
     public class Algorithm
@@ -43,15 +42,13 @@ namespace AntsTSP
 
         private delegate void UpdateWayByStepInvoker(Point pnt);
         private delegate void UpdateWayByAntInvoker(ArrayList points);
-
         private delegate void BestTourGlobalInvoker(String global);
         private delegate void BestTourIterInvoker(String global);
         private delegate void AVRTourGlobalInvoker(String iter);
         private delegate void AVRTourIterInvoker(String iter);
         private delegate void StopTimerInvoker();
+        //private delegate void StopTimerInvoker(String span);
         
-                        
-
         #endregion
 
         #region Constructors
@@ -80,14 +77,7 @@ namespace AntsTSP
 
             Thread solveTSPThread = new Thread(new ThreadStart(TryToSolveTSP));
             solveTSPThread.Start();
-
-            //TryToSolveTSP();
-            //UpdateTime();
         }
-
-
-        
-
         #endregion
 
         #region Init
@@ -122,8 +112,8 @@ namespace AntsTSP
             for (int i = 1; i <= _antCount; i++)
             {
 
-                //if (cityNum > _cityList.Count)
-                //    cityNum = 1;
+                if (cityNum > _cityList.Count)
+                    cityNum = 1;
 
                 cityNum = RandomNumber(1, _cityList.ElementAt(0).Value.Count);
                 Ant currentAnt = new Ant();
@@ -136,8 +126,7 @@ namespace AntsTSP
 
                 _antList.Add(currentAnt);
 
-
-                //cityNum += 1;
+                cityNum += 1;
             }
         }
 
@@ -277,16 +266,9 @@ namespace AntsTSP
                             int x = _tsp.Koords[keyToHighestLikeliness].X;
                             int y = _tsp.Koords[keyToHighestLikeliness].Y;
                             points.Add(new Point(x,y));
-
-                            // GUI aktualisieren --> Test
-                            //_drawForm.Invoke(new UpdateWayByStepInvoker(_drawForm.AddPointToWay), new Point(x, y));
                         }
 
                     }//Ameise ist alle Städte einmal durchgelaufen
-
-                    // TODO hier nochmal überdenken
-                    // die Ameise wird nicht zurückgeschrieben
-                    // muss das???
                     int smallCity = ant.city;
                     int bigCity = ant.firstCity;
                     CheckIndices(ref smallCity, ref bigCity);
@@ -378,8 +360,6 @@ namespace AntsTSP
 
             _avrTourIter = _avrTourIter * iterAnt / (iterAnt + 1) + _antList[iterAnt].walkedDistance / (iterAnt + 1);
             _avrTourGloabl = _avrTourGloabl * iter / (iter + 1)  + _avrTourIter / (iter + 1);
-            //_avrTourGloabl = _avrTourGloabl * iter * iterAnt / ((iter + 1) * (iterAnt + 1)) + _antList[iterAnt].walkedDistance / ((iter + 1) * (iterAnt + 1));
-
 
             _owner.Invoke(new AVRTourGlobalInvoker(_owner.SetAVRGlobal), _avrTourGloabl.ToString());
             _owner.Invoke(new AVRTourIterInvoker(_owner.SetAVRIter), _avrTourIter.ToString());
@@ -388,10 +368,11 @@ namespace AntsTSP
         }        
 
  
-private void UpdateTime()
-        {
-            TimeSpan span = DateTime.Now - _startTime;
-            _owner.Invoke(new StopTimerInvoker(_owner.SetLBLTimeText), "Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds);
-        }        #endregion
+        //private void UpdateTime()
+        //{
+        //    TimeSpan span = DateTime.Now - _startTime;
+        //    _owner.Invoke(new StopTimerInvoker(_owner.SetLBLTimeText), "Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds);
+        //}        
+        #endregion
     }
 }
