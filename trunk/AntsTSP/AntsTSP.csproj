@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithm.cs" />
+    <Compile Include="OutputData.cs" />
+    <Compile Include="OutputWriter.cs" />
     <Compile Include="Structs.cs" />
     <Compile Include="FDrawForm.cs">
       <SubType>Form</SubType>
