@@ -181,6 +181,8 @@ namespace AntsTSP
             _timer.Interval = 100;
             _timer.Start();
 
+            _btnStart.Enabled = false;
+
             _algorithm = new Algorithm(this, _tspFile, _drawForm, double.Parse(_tbTau.Text),
                 double.Parse(_tbQ.Text),
                 double.Parse(_tbRho.Text),
@@ -211,6 +213,7 @@ namespace AntsTSP
         public void StopTimer()
         {
             _timer.Stop();
+            _btnStart.Enabled = true;
         }
 
         internal void SetBestTourGlobal(String global)
