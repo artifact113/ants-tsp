@@ -393,15 +393,16 @@
             // _smiTSPLadenToolStripMenuItem
             // 
             this._smiTSPLadenToolStripMenuItem.Name = "_smiTSPLadenToolStripMenuItem";
-            this._smiTSPLadenToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this._smiTSPLadenToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this._smiTSPLadenToolStripMenuItem.Text = "... TSP laden";
             this._smiTSPLadenToolStripMenuItem.Click += new System.EventHandler(this._smiTSPLadenToolStripMenuItem_Click);
             // 
             // tODOErgsSpeichernToolStripMenuItem
             // 
             this.tODOErgsSpeichernToolStripMenuItem.Name = "tODOErgsSpeichernToolStripMenuItem";
-            this.tODOErgsSpeichernToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.tODOErgsSpeichernToolStripMenuItem.Text = "//TODO ergs speichern";
+            this.tODOErgsSpeichernToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.tODOErgsSpeichernToolStripMenuItem.Text = "... Resultat speichern";
+            this.tODOErgsSpeichernToolStripMenuItem.Click += new System.EventHandler(this.tODOErgsSpeichernToolStripMenuItem_Click);
             // 
             // FInput
             // 
