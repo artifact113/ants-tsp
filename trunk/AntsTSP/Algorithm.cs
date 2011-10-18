@@ -30,6 +30,7 @@ namespace AntsTSP
         private double _beta;
         private int _antCount;
         private int _iterCount;
+        ArrayList _bestWay= new ArrayList();
 
         private DateTime _startTime;
         private FInput _owner;
@@ -41,13 +42,12 @@ namespace AntsTSP
         private double _avrTourIter;
 
         private delegate void UpdateWayByStepInvoker(Point pnt);
-        private delegate void UpdateWayByAntInvoker(ArrayList points);
+        private delegate void UpdateWayByAntInvoker(ArrayList currentWayAsArray, ArrayList bestWay);
         private delegate void BestTourGlobalInvoker(String global);
         private delegate void BestTourIterInvoker(String global);
         private delegate void AVRTourGlobalInvoker(String iter);
         private delegate void AVRTourIterInvoker(String iter);
         private delegate void StopTimerInvoker();
-        //private delegate void StopTimerInvoker(String span);
         
         #endregion
 
@@ -199,7 +199,7 @@ namespace AntsTSP
                 {
                     Ant ant = _antList[iterAnt];      
                     
-                    ArrayList points = new ArrayList();
+                    ArrayList currentWayAsArray = new ArrayList();
 
                     while (_antList[iterAnt].cityList.Count > 0)
                     {
@@ -265,7 +265,7 @@ namespace AntsTSP
                           
                             int x = _tsp.Koords[keyToHighestLikeliness].X;
                             int y = _tsp.Koords[keyToHighestLikeliness].Y;
-                            points.Add(new Point(x,y));
+                            currentWayAsArray.Add(new Point(x,y));
                         }
 
                     }//Ameise ist alle Städte einmal durchgelaufen
@@ -277,14 +277,19 @@ namespace AntsTSP
                     ant.city = ant.firstCity;
                     int x2 = _tsp.Koords[ant.city].X;
                     int y2 = _tsp.Koords[ant.city].Y;
-                    points.Add(new Point(x2, y2));
+                    currentWayAsArray.Add(new Point(x2, y2));
                     
                     _antList[iterAnt] = ant; ;
 
                     // GUI aktualisieren
 
+                    if (_antList[iterAnt].walkedDistance < _bestTourGloabl)
+                    {
+                        _bestWay = currentWayAsArray;
+                    }
+
                     UpdateLength(iterAnt, iter);
-                    _drawForm.Invoke(new UpdateWayByAntInvoker(_drawForm.ShowCurrentWay), points);
+                    _drawForm.Invoke(new UpdateWayByAntInvoker(_drawForm.ShowCurrentWay), currentWayAsArray, _bestWay);
                     
 
                     //Pheromonupdate ausführen

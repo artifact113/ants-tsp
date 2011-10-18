@@ -15,7 +15,7 @@ namespace AntsTSP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FInput());
+           Application.Run(new FInput());
         }
     }
 }
