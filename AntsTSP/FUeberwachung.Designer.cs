@@ -42,7 +42,12 @@
             this._tbBestGlob = new System.Windows.Forms.TextBox();
             this._lblBestIter = new System.Windows.Forms.Label();
             this._lblBestGlob = new System.Windows.Forms.Label();
+            this._lblCityCount = new System.Windows.Forms.Label();
             this._gbConfig = new System.Windows.Forms.GroupBox();
+            this._lblMinTourLength = new System.Windows.Forms.Label();
+            this._lblOptTourLength = new System.Windows.Forms.Label();
+            this._tbMinTour = new System.Windows.Forms.TextBox();
+            this._tbOptTour = new System.Windows.Forms.TextBox();
             this._btnStart = new System.Windows.Forms.Button();
             this._tbQ = new System.Windows.Forms.TextBox();
             this._lblQ = new System.Windows.Forms.Label();
@@ -56,8 +61,6 @@
             this._lblAlpha = new System.Windows.Forms.Label();
             this._tbIterationCount = new System.Windows.Forms.TextBox();
             this._lblCountIterations = new System.Windows.Forms.Label();
-            this._tbCityCount = new System.Windows.Forms.TextBox();
-            this._lblCityCount = new System.Windows.Forms.Label();
             this._tbAntCount = new System.Windows.Forms.TextBox();
             this._lblAntCount = new System.Windows.Forms.Label();
             this._ttInputTooltip = new System.Windows.Forms.ToolTip(this.components);
@@ -65,6 +68,7 @@
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._smiTSPLadenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tODOErgsSpeichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._lblIterCount = new System.Windows.Forms.Label();
             this._gbOutput.SuspendLayout();
             this._gbAvrg.SuspendLayout();
             this._gbBest.SuspendLayout();
@@ -76,9 +80,11 @@
             // 
             this._gbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this._gbOutput.Controls.Add(this._lblIterCount);
             this._gbOutput.Controls.Add(this._lblTime);
             this._gbOutput.Controls.Add(this._gbAvrg);
             this._gbOutput.Controls.Add(this._gbBest);
+            this._gbOutput.Controls.Add(this._lblCityCount);
             this._gbOutput.Location = new System.Drawing.Point(12, 37);
             this._gbOutput.Name = "_gbOutput";
             this._gbOutput.Size = new System.Drawing.Size(510, 145);
@@ -91,7 +97,7 @@
             this._lblTime.AutoSize = true;
             this._lblTime.Location = new System.Drawing.Point(6, 116);
             this._lblTime.Name = "_lblTime";
-            this._lblTime.Size = new System.Drawing.Size(28, 13);
+            this._lblTime.Size = new System.Drawing.Size(30, 15);
             this._lblTime.TabIndex = 1;
             this._lblTime.Text = "Zeit:";
             // 
@@ -112,6 +118,7 @@
             // 
             this._tbAVRIter.Location = new System.Drawing.Point(115, 47);
             this._tbAVRIter.Name = "_tbAVRIter";
+            this._tbAVRIter.ReadOnly = true;
             this._tbAVRIter.Size = new System.Drawing.Size(98, 20);
             this._tbAVRIter.TabIndex = 6;
             // 
@@ -119,6 +126,7 @@
             // 
             this._tbAVRGlob.Location = new System.Drawing.Point(115, 20);
             this._tbAVRGlob.Name = "_tbAVRGlob";
+            this._tbAVRGlob.ReadOnly = true;
             this._tbAVRGlob.Size = new System.Drawing.Size(98, 20);
             this._tbAVRGlob.TabIndex = 7;
             // 
@@ -127,7 +135,7 @@
             this._lblAVRIter.AutoSize = true;
             this._lblAVRIter.Location = new System.Drawing.Point(27, 50);
             this._lblAVRIter.Name = "_lblAVRIter";
-            this._lblAVRIter.Size = new System.Drawing.Size(41, 13);
+            this._lblAVRIter.Size = new System.Drawing.Size(45, 15);
             this._lblAVRIter.TabIndex = 5;
             this._lblAVRIter.Text = "iterativ:";
             // 
@@ -136,7 +144,7 @@
             this._lblAVRGlob.AutoSize = true;
             this._lblAVRGlob.Location = new System.Drawing.Point(30, 23);
             this._lblAVRGlob.Name = "_lblAVRGlob";
-            this._lblAVRGlob.Size = new System.Drawing.Size(38, 13);
+            this._lblAVRGlob.Size = new System.Drawing.Size(44, 15);
             this._lblAVRGlob.TabIndex = 4;
             this._lblAVRGlob.Text = "global:";
             // 
@@ -157,6 +165,7 @@
             // 
             this._tbBestIter.Location = new System.Drawing.Point(111, 47);
             this._tbBestIter.Name = "_tbBestIter";
+            this._tbBestIter.ReadOnly = true;
             this._tbBestIter.Size = new System.Drawing.Size(98, 20);
             this._tbBestIter.TabIndex = 2;
             // 
@@ -164,6 +173,7 @@
             // 
             this._tbBestGlob.Location = new System.Drawing.Point(111, 20);
             this._tbBestGlob.Name = "_tbBestGlob";
+            this._tbBestGlob.ReadOnly = true;
             this._tbBestGlob.Size = new System.Drawing.Size(98, 20);
             this._tbBestGlob.TabIndex = 3;
             // 
@@ -172,7 +182,7 @@
             this._lblBestIter.AutoSize = true;
             this._lblBestIter.Location = new System.Drawing.Point(23, 50);
             this._lblBestIter.Name = "_lblBestIter";
-            this._lblBestIter.Size = new System.Drawing.Size(41, 13);
+            this._lblBestIter.Size = new System.Drawing.Size(45, 15);
             this._lblBestIter.TabIndex = 1;
             this._lblBestIter.Text = "iterativ:";
             // 
@@ -181,14 +191,27 @@
             this._lblBestGlob.AutoSize = true;
             this._lblBestGlob.Location = new System.Drawing.Point(26, 23);
             this._lblBestGlob.Name = "_lblBestGlob";
-            this._lblBestGlob.Size = new System.Drawing.Size(38, 13);
+            this._lblBestGlob.Size = new System.Drawing.Size(44, 15);
             this._lblBestGlob.TabIndex = 0;
             this._lblBestGlob.Text = "global:";
+            // 
+            // _lblCityCount
+            // 
+            this._lblCityCount.AutoSize = true;
+            this._lblCityCount.Location = new System.Drawing.Point(376, 116);
+            this._lblCityCount.Name = "_lblCityCount";
+            this._lblCityCount.Size = new System.Drawing.Size(45, 15);
+            this._lblCityCount.TabIndex = 4;
+            this._lblCityCount.Text = "Städte:";
             // 
             // _gbConfig
             // 
             this._gbConfig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this._gbConfig.Controls.Add(this._lblMinTourLength);
+            this._gbConfig.Controls.Add(this._lblOptTourLength);
+            this._gbConfig.Controls.Add(this._tbMinTour);
+            this._gbConfig.Controls.Add(this._tbOptTour);
             this._gbConfig.Controls.Add(this._btnStart);
             this._gbConfig.Controls.Add(this._tbQ);
             this._gbConfig.Controls.Add(this._lblQ);
@@ -202,8 +225,6 @@
             this._gbConfig.Controls.Add(this._lblAlpha);
             this._gbConfig.Controls.Add(this._tbIterationCount);
             this._gbConfig.Controls.Add(this._lblCountIterations);
-            this._gbConfig.Controls.Add(this._tbCityCount);
-            this._gbConfig.Controls.Add(this._lblCityCount);
             this._gbConfig.Controls.Add(this._tbAntCount);
             this._gbConfig.Controls.Add(this._lblAntCount);
             this._gbConfig.Location = new System.Drawing.Point(12, 197);
@@ -212,6 +233,44 @@
             this._gbConfig.TabIndex = 0;
             this._gbConfig.TabStop = false;
             this._gbConfig.Text = "Konfiguration";
+            // 
+            // _lblMinTourLength
+            // 
+            this._lblMinTourLength.AutoSize = true;
+            this._lblMinTourLength.Location = new System.Drawing.Point(1, 78);
+            this._lblMinTourLength.Name = "_lblMinTourLength";
+            this._lblMinTourLength.Size = new System.Drawing.Size(87, 15);
+            this._lblMinTourLength.TabIndex = 22;
+            this._lblMinTourLength.Text = "Minimale Tour";
+            this._lblMinTourLength.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // _lblOptTourLength
+            // 
+            this._lblOptTourLength.AutoSize = true;
+            this._lblOptTourLength.Location = new System.Drawing.Point(3, 104);
+            this._lblOptTourLength.Name = "_lblOptTourLength";
+            this._lblOptTourLength.Size = new System.Drawing.Size(85, 15);
+            this._lblOptTourLength.TabIndex = 21;
+            this._lblOptTourLength.Text = "Optimale Tour";
+            this._lblOptTourLength.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // _tbMinTour
+            // 
+            this._tbMinTour.Location = new System.Drawing.Point(117, 75);
+            this._tbMinTour.Name = "_tbMinTour";
+            this._tbMinTour.Size = new System.Drawing.Size(98, 20);
+            this._tbMinTour.TabIndex = 5;
+            this._tbMinTour.Text = "1";
+            this._tbMinTour.TextChanged += new System.EventHandler(this.TextChanged);
+            // 
+            // _tbOptTour
+            // 
+            this._tbOptTour.Location = new System.Drawing.Point(117, 101);
+            this._tbOptTour.Name = "_tbOptTour";
+            this._tbOptTour.Size = new System.Drawing.Size(98, 20);
+            this._tbOptTour.TabIndex = 6;
+            this._tbOptTour.Text = "1";
+            this._tbOptTour.TextChanged += new System.EventHandler(this.TextChanged);
             // 
             // _btnStart
             // 
@@ -228,16 +287,16 @@
             this._tbQ.Location = new System.Drawing.Point(379, 133);
             this._tbQ.Name = "_tbQ";
             this._tbQ.Size = new System.Drawing.Size(98, 20);
-            this._tbQ.TabIndex = 17;
+            this._tbQ.TabIndex = 11;
             this._ttInputTooltip.SetToolTip(this._tbQ, "heuristischer Parameter für Pheromon-Update (Q > 0)");
             this._tbQ.TextChanged += new System.EventHandler(this.TextChanged);
             // 
             // _lblQ
             // 
             this._lblQ.AutoSize = true;
-            this._lblQ.Location = new System.Drawing.Point(317, 136);
+            this._lblQ.Location = new System.Drawing.Point(326, 136);
             this._lblQ.Name = "_lblQ";
-            this._lblQ.Size = new System.Drawing.Size(15, 13);
+            this._lblQ.Size = new System.Drawing.Size(16, 15);
             this._lblQ.TabIndex = 16;
             this._lblQ.Text = "Q";
             this._ttInputTooltip.SetToolTip(this._lblQ, "heuristischer Parameter für Pheromon-Update (Q > 0)");
@@ -247,16 +306,16 @@
             this._tbTau.Location = new System.Drawing.Point(379, 104);
             this._tbTau.Name = "_tbTau";
             this._tbTau.Size = new System.Drawing.Size(98, 20);
-            this._tbTau.TabIndex = 15;
+            this._tbTau.TabIndex = 10;
             this._ttInputTooltip.SetToolTip(this._tbTau, "initiale Pheromon-Werte (Tau0 > 0)");
             this._tbTau.TextChanged += new System.EventHandler(this.TextChanged);
             // 
             // _lblTau
             // 
             this._lblTau.AutoSize = true;
-            this._lblTau.Location = new System.Drawing.Point(300, 107);
+            this._lblTau.Location = new System.Drawing.Point(309, 107);
             this._lblTau.Name = "_lblTau";
-            this._lblTau.Size = new System.Drawing.Size(32, 13);
+            this._lblTau.Size = new System.Drawing.Size(35, 15);
             this._lblTau.TabIndex = 14;
             this._lblTau.Text = "Tau0";
             this._ttInputTooltip.SetToolTip(this._lblTau, "initiale Pheromon-Werte (Tau0 > 0)");
@@ -266,16 +325,16 @@
             this._tbRho.Location = new System.Drawing.Point(379, 78);
             this._tbRho.Name = "_tbRho";
             this._tbRho.Size = new System.Drawing.Size(98, 20);
-            this._tbRho.TabIndex = 13;
+            this._tbRho.TabIndex = 9;
             this._ttInputTooltip.SetToolTip(this._tbRho, "Verdunstungsfaktor (0 < Rho <= 1)");
             this._tbRho.TextChanged += new System.EventHandler(this.TextChanged);
             // 
             // _lblRho
             // 
             this._lblRho.AutoSize = true;
-            this._lblRho.Location = new System.Drawing.Point(305, 81);
+            this._lblRho.Location = new System.Drawing.Point(314, 81);
             this._lblRho.Name = "_lblRho";
-            this._lblRho.Size = new System.Drawing.Size(27, 13);
+            this._lblRho.Size = new System.Drawing.Size(30, 15);
             this._lblRho.TabIndex = 12;
             this._lblRho.Text = "Rho";
             this._ttInputTooltip.SetToolTip(this._lblRho, "Verdunstungsfaktor (0 < Rho <= 1)");
@@ -285,7 +344,7 @@
             this._tbBeta.Location = new System.Drawing.Point(379, 52);
             this._tbBeta.Name = "_tbBeta";
             this._tbBeta.Size = new System.Drawing.Size(98, 20);
-            this._tbBeta.TabIndex = 11;
+            this._tbBeta.TabIndex = 8;
             this._tbBeta.Text = "1";
             this._ttInputTooltip.SetToolTip(this._tbBeta, "heuristischer Parameter für die lokale Information (Beta > 0)");
             this._tbBeta.TextChanged += new System.EventHandler(this.TextChanged);
@@ -293,9 +352,9 @@
             // _lblBeta
             // 
             this._lblBeta.AutoSize = true;
-            this._lblBeta.Location = new System.Drawing.Point(303, 55);
+            this._lblBeta.Location = new System.Drawing.Point(312, 55);
             this._lblBeta.Name = "_lblBeta";
-            this._lblBeta.Size = new System.Drawing.Size(29, 13);
+            this._lblBeta.Size = new System.Drawing.Size(32, 15);
             this._lblBeta.TabIndex = 10;
             this._lblBeta.Text = "Beta";
             this._ttInputTooltip.SetToolTip(this._lblBeta, "heuristischer Parameter für die lokale Information (Beta > 0)");
@@ -305,7 +364,7 @@
             this._tbAlpha.Location = new System.Drawing.Point(379, 23);
             this._tbAlpha.Name = "_tbAlpha";
             this._tbAlpha.Size = new System.Drawing.Size(98, 20);
-            this._tbAlpha.TabIndex = 9;
+            this._tbAlpha.TabIndex = 7;
             this._tbAlpha.Text = "1";
             this._ttInputTooltip.SetToolTip(this._tbAlpha, "Pheromon Parameter (0 <= Alpha <= 0)");
             this._tbAlpha.TextChanged += new System.EventHandler(this.TextChanged);
@@ -313,46 +372,29 @@
             // _lblAlpha
             // 
             this._lblAlpha.AutoSize = true;
-            this._lblAlpha.Location = new System.Drawing.Point(298, 26);
+            this._lblAlpha.Location = new System.Drawing.Point(307, 26);
             this._lblAlpha.Name = "_lblAlpha";
-            this._lblAlpha.Size = new System.Drawing.Size(34, 13);
+            this._lblAlpha.Size = new System.Drawing.Size(38, 15);
             this._lblAlpha.TabIndex = 8;
             this._lblAlpha.Text = "Alpha";
             this._ttInputTooltip.SetToolTip(this._lblAlpha, "Pheromon Parameter (0 <= Alpha <= 0)");
             // 
             // _tbIterationCount
             // 
-            this._tbIterationCount.Location = new System.Drawing.Point(117, 75);
+            this._tbIterationCount.Location = new System.Drawing.Point(117, 49);
             this._tbIterationCount.Name = "_tbIterationCount";
             this._tbIterationCount.Size = new System.Drawing.Size(98, 20);
-            this._tbIterationCount.TabIndex = 7;
+            this._tbIterationCount.TabIndex = 4;
             this._tbIterationCount.TextChanged += new System.EventHandler(this.TextChanged);
             // 
             // _lblCountIterations
             // 
             this._lblCountIterations.AutoSize = true;
-            this._lblCountIterations.Location = new System.Drawing.Point(13, 78);
+            this._lblCountIterations.Location = new System.Drawing.Point(23, 52);
             this._lblCountIterations.Name = "_lblCountIterations";
-            this._lblCountIterations.Size = new System.Drawing.Size(57, 13);
+            this._lblCountIterations.Size = new System.Drawing.Size(65, 15);
             this._lblCountIterations.TabIndex = 6;
             this._lblCountIterations.Text = "Iterationen";
-            // 
-            // _tbCityCount
-            // 
-            this._tbCityCount.Location = new System.Drawing.Point(117, 49);
-            this._tbCityCount.Name = "_tbCityCount";
-            this._tbCityCount.Size = new System.Drawing.Size(98, 20);
-            this._tbCityCount.TabIndex = 5;
-            this._tbCityCount.TextChanged += new System.EventHandler(this.TextChanged);
-            // 
-            // _lblCityCount
-            // 
-            this._lblCityCount.AutoSize = true;
-            this._lblCityCount.Location = new System.Drawing.Point(32, 52);
-            this._lblCityCount.Name = "_lblCityCount";
-            this._lblCityCount.Size = new System.Drawing.Size(38, 13);
-            this._lblCityCount.TabIndex = 4;
-            this._lblCityCount.Text = "Städte";
             // 
             // _tbAntCount
             // 
@@ -365,9 +407,9 @@
             // _lblAntCount
             // 
             this._lblAntCount.AutoSize = true;
-            this._lblAntCount.Location = new System.Drawing.Point(23, 26);
+            this._lblAntCount.Location = new System.Drawing.Point(33, 26);
             this._lblAntCount.Name = "_lblAntCount";
-            this._lblAntCount.Size = new System.Drawing.Size(47, 13);
+            this._lblAntCount.Size = new System.Drawing.Size(55, 15);
             this._lblAntCount.TabIndex = 0;
             this._lblAntCount.Text = "Ameisen";
             // 
@@ -403,6 +445,15 @@
             this.tODOErgsSpeichernToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.tODOErgsSpeichernToolStripMenuItem.Text = "... Resultat speichern";
             this.tODOErgsSpeichernToolStripMenuItem.Click += new System.EventHandler(this.tODOErgsSpeichernToolStripMenuItem_Click);
+            // 
+            // _lblIterCount
+            // 
+            this._lblIterCount.AutoSize = true;
+            this._lblIterCount.Location = new System.Drawing.Point(285, 116);
+            this._lblIterCount.Name = "_lblIterCount";
+            this._lblIterCount.Size = new System.Drawing.Size(51, 15);
+            this._lblIterCount.TabIndex = 6;
+            this._lblIterCount.Text = "Iteration";
             // 
             // FInput
             // 
@@ -460,7 +511,6 @@
         private System.Windows.Forms.Label _lblAlpha;
         private System.Windows.Forms.TextBox _tbIterationCount;
         private System.Windows.Forms.Label _lblCountIterations;
-        private System.Windows.Forms.TextBox _tbCityCount;
         private System.Windows.Forms.Label _lblCityCount;
         private System.Windows.Forms.TextBox _tbAntCount;
         private System.Windows.Forms.Label _lblAntCount;
@@ -469,5 +519,10 @@
         private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _smiTSPLadenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tODOErgsSpeichernToolStripMenuItem;
+        private System.Windows.Forms.Label _lblMinTourLength;
+        private System.Windows.Forms.Label _lblOptTourLength;
+        private System.Windows.Forms.TextBox _tbMinTour;
+        private System.Windows.Forms.TextBox _tbOptTour;
+        private System.Windows.Forms.Label _lblIterCount;
     }
 }

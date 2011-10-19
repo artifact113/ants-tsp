@@ -13,6 +13,7 @@ namespace AntsTSP
 {
     public partial class FDrawForm : Form
     {
+        private delegate void CityNumberInvoker(int numberOfCities);
 
         private LoadTSP _tspFile;
         private ArrayList _way = new ArrayList();
@@ -20,7 +21,8 @@ namespace AntsTSP
         private Point[] _bestWayAsArray;
         private Point[] _wayAsSortedListWithSkal;
         private Point[] _bestWayAsSortedListWithSkal;
-        private bool _init = true;
+        private bool _algoIsRunning = false;
+        private FInput _owner;
 
         private const int _skalAbsolut = 2;
         private double _skalX = .0;
@@ -32,14 +34,12 @@ namespace AntsTSP
         {
             get { return _way; }
             set { _way = value; }
-        } 
+        }
 
-        //public void AddPointToWay(Point pnt)
-        //{
-        //    _way.Add(new Point(pnt.X/skal, pnt.Y/skal));
-        //    _wayAsArray = (Point[])_way.ToArray(typeof(Point));
-        //    this.Refresh();
-        //}
+        public void IsAlgoRunning(bool enabled)
+        {
+            _algoIsRunning = enabled;
+        }
 
         public void ShowCurrentWay(ArrayList currentWay, ArrayList bestWay)
         {
@@ -69,18 +69,21 @@ namespace AntsTSP
 
         private void UpdateCurrentWay()
         {
-            _wayAsSortedListWithSkal = _wayAsArray;
-            _bestWayAsSortedListWithSkal = _bestWayAsArray;
+            _wayAsSortedListWithSkal = new Point[_wayAsArray.Length];
+            _bestWayAsSortedListWithSkal = new Point[_bestWayAsArray.Length];
 
             for (int i = 0; i < _wayAsArray.Length; i++)
             {
                 //das geht beim erneuten Zeichnen krachen, die Werte in _wayAsArray auch verändert werden
                 //weil Point nur ein Struct ist und das byRef übergeben wird
-                _wayAsSortedListWithSkal[i].X = (int)(_wayAsArray[i].X * _skalX);
-                _wayAsSortedListWithSkal[i].Y = (int)(_wayAsArray[i].Y * _skalY);
+                int x = (int)(_wayAsArray[i].X * _skalX);
+                int y = (int)(_wayAsArray[i].Y * _skalY);
+                _wayAsSortedListWithSkal[i] = new Point(x, y);
+                //_wayAsSortedListWithSkal[i].Y = (int)(_wayAsArray[i].Y * _skalY);
 
-                _bestWayAsSortedListWithSkal[i].X = (int)(_bestWayAsArray[i].X * _skalX);
-                _bestWayAsSortedListWithSkal[i].Y = (int)(_bestWayAsArray[i].Y * _skalY);
+                x = (int)(_bestWayAsArray[i].X * _skalX);
+                y = (int)(_bestWayAsArray[i].Y * _skalY);
+                _bestWayAsSortedListWithSkal[i] = new Point (x,y);
 
             }
         }
@@ -102,13 +105,16 @@ namespace AntsTSP
             }
         }
 
-        public FDrawForm(LoadTSP load)
+        public FDrawForm(LoadTSP load, FInput owner)
         {
             InitializeComponent();
 
             _tspFile = load;
+            
             Thread t = new Thread(new ThreadStart(ShowDrawForm));
             t.Start();
+            _owner = owner;
+            _owner.Invoke(new CityNumberInvoker(_owner.SetNumberOfCities), _tspFile.Koords.Count);
         }
 
         private void ShowDrawForm()
@@ -148,6 +154,24 @@ namespace AntsTSP
                 g.DrawPolygon(thickPen, _bestWayAsSortedListWithSkal);
                 //g.DrawPolygon(pen, _wayAsArray);
             }            
+        }
+
+        private void FDrawForm_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (!_algoIsRunning)
+            {
+                double x = e.X / _skalX;
+                double y = e.Y / _skalY;
+                Point newPoint = new Point((int)x, (int)y);
+                if (!_tspFile.Koords.ContainsValue(newPoint))
+                {
+                    int length = _tspFile.Koords.Count;
+
+                    _tspFile.Koords.Add(length + 1, newPoint);
+                    this.Refresh();
+                    _owner.Invoke(new CityNumberInvoker(_owner.SetNumberOfCities), _tspFile.Koords.Count);
+                }
+            }
         }             
     }
 }

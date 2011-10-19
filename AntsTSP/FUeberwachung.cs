@@ -23,13 +23,14 @@ namespace AntsTSP
         private LoadTSP _tspFile;
 
         private bool _antCountFehlerfrei = false;
-        private bool _cityCountFehlerfrei = false;
         private bool _iterCountFehlerfrei = false;
         private bool _alphaFehlerfrei = true; // predefined in GUI
         private bool _betaFehlerfrei = true; // predefined in GUI
         private bool _rhoFehlerfrei = false;
         private bool _tauFehlerfrei = false;
         private bool _qFehlerfrei = false;
+        private bool _minTourFehlerfrei = true; // predefined in GUI
+        private bool _optTourFehlerfrei = true; // predefined in GUI
 
         private DateTime _startTime;
         private System.Windows.Forms.Timer _timer;
@@ -85,13 +86,14 @@ namespace AntsTSP
             get
             {
                 return _antCountFehlerfrei
-                          && _cityCountFehlerfrei
                           && _iterCountFehlerfrei
                           && _alphaFehlerfrei
                           && _betaFehlerfrei
                           && _rhoFehlerfrei
                           && _tauFehlerfrei
-                          && _qFehlerfrei;
+                          && _qFehlerfrei
+                          &&_minTourFehlerfrei
+                          &&_optTourFehlerfrei;
             }     
         }
 
@@ -102,7 +104,7 @@ namespace AntsTSP
         private void _smiTSPLadenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _tspFile = new LoadTSP();
-            _drawForm = new FDrawForm(_tspFile);
+            _drawForm = new FDrawForm(_tspFile, this);
         }
 
         private void tODOErgsSpeichernToolStripMenuItem_Click(object sender, EventArgs e)
@@ -127,12 +129,6 @@ namespace AntsTSP
                     _antCountFehlerfrei = CheckIfInt(_tbAntCount.Text);
                     _tbAntCount.BackColor = (_antCountFehlerfrei) ? _okCol : _errCol;
                     break;
-
-                case "_tbCityCount":
-                    _cityCountFehlerfrei = CheckIfInt(_tbCityCount.Text);
-                    _tbCityCount.BackColor = (_cityCountFehlerfrei) ? _okCol : _errCol;
-                    break;
-
                 case "_tbIterationCount":
                     _iterCountFehlerfrei = CheckIfInt(_tbIterationCount.Text);
                     _tbIterationCount.BackColor = (_iterCountFehlerfrei) ? _okCol : _errCol;
@@ -158,7 +154,14 @@ namespace AntsTSP
                     _qFehlerfrei = CheckIfDouble(_tbQ.Text);
                     _tbQ.BackColor = (_qFehlerfrei) ? _okCol : _errCol;
                     break;
-
+                case "_tbMinTour":
+                    _minTourFehlerfrei = CheckIfDouble(_tbMinTour.Text);
+                    _tbMinTour.BackColor = (_minTourFehlerfrei) ? _okCol : _errCol;
+                    break;
+                case "_tbOptTour":
+                    _optTourFehlerfrei = CheckIfDouble(_tbOptTour.Text);
+                    _tbOptTour.BackColor = (_optTourFehlerfrei) ? _okCol : _errCol;
+                    break;
             }
         }
 
@@ -189,7 +192,9 @@ namespace AntsTSP
                 double.Parse(_tbAlpha.Text),
                 double.Parse(_tbBeta.Text),
                 int.Parse(_tbIterationCount.Text),
-                int.Parse(_tbAntCount.Text));
+                int.Parse(_tbAntCount.Text),
+                double.Parse(_tbMinTour.Text),
+                double.Parse(_tbOptTour.Text));
         }
 
         #endregion
@@ -236,6 +241,14 @@ namespace AntsTSP
             _tbAVRIter.Text = iter;
         }
 
-        
+        internal void SetNumberOfCities(int numberOfCities)
+        {
+            _lblCityCount.Text = "Städte: " + numberOfCities.ToString();
+        }
+
+        internal void SetNumberOfIters(int numberOfIters)
+        {
+            _lblIterCount.Text = "Iteration " + numberOfIters.ToString();
+        }   
     }
 }
