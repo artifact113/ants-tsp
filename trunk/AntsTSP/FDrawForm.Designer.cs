@@ -41,6 +41,7 @@
             this.Name = "FDrawForm";
             this.Text = "Ants Frame";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainForm_Paint);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FDrawForm_MouseClick);
             this.ResumeLayout(false);
 
         }

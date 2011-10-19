@@ -21,6 +21,7 @@ namespace AntsTSP
 
         private SortedList<int, SortedList<int, City>> _cityList = new SortedList<int, SortedList<int, City>>();
         private List<Ant> _antList = new List<Ant>();
+        private SortedList<int, City> _cityListForAnt = new SortedList<int,City>();
 
         private LoadTSP _tsp;
         private double _tau;
@@ -30,7 +31,9 @@ namespace AntsTSP
         private double _beta;
         private int _antCount;
         private int _iterCount;
-        ArrayList _bestWay= new ArrayList();
+        private ArrayList _bestWay= new ArrayList();
+        private double _minTourLength;
+        private double _optTourLength = double.NegativeInfinity;
 
         private DateTime _startTime;
         private FInput _owner;
@@ -48,12 +51,21 @@ namespace AntsTSP
         private delegate void AVRTourGlobalInvoker(String iter);
         private delegate void AVRTourIterInvoker(String iter);
         private delegate void StopTimerInvoker();
+        private delegate void FormDisablementInvoker(bool enabled);
+        private delegate void EndFormInvoker(bool enabled);
+        private delegate void IterCountInvoker(int iter);
         
         #endregion
 
         #region Constructors
 
-        public Algorithm(FInput fInput, LoadTSP tsp, FDrawForm drawForm, double tau, double q, double rho, double alpha, double beta, int iter, int ants)
+        public Algorithm(
+            FInput fInput, LoadTSP tsp,
+            FDrawForm drawForm, double tau,
+            double q, double rho, 
+            double alpha, double beta, 
+            int iter, int ants,
+            double minTour, double optTour)
         {
             _tsp = tsp;
 
@@ -66,9 +78,12 @@ namespace AntsTSP
             _iterCount = iter;
             _owner = fInput;
             _drawForm = drawForm;
+            _minTourLength = minTour;
+            _optTourLength = optTour;
 
             // init
             InitCityList();
+            InitCityListForAnt();
             InitAnts();
             _startTime = DateTime.Now;
 
@@ -91,17 +106,18 @@ namespace AntsTSP
                 if (cityNum > _cityList.Count)
                     cityNum = 1;
 
+                cityNum = RandomNumber(1, _cityListForAnt.Count);
                 Ant currentAnt = new Ant();
                 currentAnt.walkedDistance = .0;
                 currentAnt.firstCity = cityNum;
                 currentAnt.city = cityNum;
-                SortedList<int, City> lst = new SortedList<int, City>(_cityList.ElementAt(0).Value);
+                SortedList<int, City> lst = new SortedList<int, City>(_cityListForAnt);
                 currentAnt.cityList = lst;
                 currentAnt.DeleteCityFromList(currentAnt.city);
 
                 _antList[i] = currentAnt;
 
-                cityNum += 1;
+                //cityNum += 1;
             }
         }
 
@@ -112,23 +128,46 @@ namespace AntsTSP
             for (int i = 1; i <= _antCount; i++)
             {
 
-                if (cityNum > _cityList.Count)
+                if (cityNum > _cityListForAnt.Count)
                     cityNum = 1;
 
-                cityNum = RandomNumber(1, _cityList.ElementAt(0).Value.Count);
+                cityNum = RandomNumber(1, _cityListForAnt.Count);
                 Ant currentAnt = new Ant();
                 currentAnt.walkedDistance = .0;
                 currentAnt.firstCity = cityNum;
                 currentAnt.city = cityNum;
-                SortedList<int, City> lst = new SortedList<int,City>(_cityList.ElementAt(0).Value);
+                SortedList<int, City> lst = new SortedList<int,City>(_cityListForAnt);
                 currentAnt.cityList = lst;
                 currentAnt.DeleteCityFromList(currentAnt.city);
 
                 _antList.Add(currentAnt);
-
-                cityNum += 1;
             }
         }
+
+        //private void InitAnts2()
+        //{
+        //    int cityNum = 1;
+
+        //    for (int i = 1; i <= _antCount; i++)
+        //    {
+
+        //        if (cityNum > _cityList.Count)
+        //            cityNum = 1;
+
+        //        cityNum = RandomNumber(1, _cityList.ElementAt(0).Value.Count);
+        //        Ant currentAnt = new Ant();
+        //        currentAnt.walkedDistance = .0;
+        //        currentAnt.firstCity = cityNum;
+        //        currentAnt.city = cityNum;
+        //        SortedList<int, City> lst = new SortedList<int, City>(_cityList.ElementAt(0).Value);
+        //        currentAnt.cityList = lst;
+        //        currentAnt.DeleteCityFromList(currentAnt.city);
+
+        //        _antList.Add(currentAnt);
+
+        //        //cityNum += 1;
+        //    }
+        //}
 
         private void InitCityList()
         {
@@ -145,8 +184,8 @@ namespace AntsTSP
                 x1 = current.X;
                 y1 = current.Y;
 
-                int col = row;
-                for (; col < _tsp.Koords.Values.Count; col++)
+
+                for (int col = row + 1; col < _tsp.Koords.Values.Count; col++)
                 {
                     x2 = _tsp.Koords.Values[col].X;
                     y2 = _tsp.Koords.Values[col].Y;
@@ -165,7 +204,7 @@ namespace AntsTSP
                     {
                         dist = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
                         phero = _tau;
-                        atractivity = 1 / dist;                        
+                        atractivity = 1 / dist;
                     }
                     City currCity = new City();
                     currCity.key = _tsp.Koords.Keys[col];
@@ -179,15 +218,50 @@ namespace AntsTSP
             }
         }
 
+        private void InitCityListForAnt()
+        {
+            int x = 0;
+            int y = 0;
+
+            for (int row = 0; row < _tsp.Koords.Values.Count; row++)
+            {
+
+                Point current = _tsp.Koords.Values[row];
+                x = current.X;
+                y = current.Y;
+                
+                City currCity = new City();
+                currCity.key = _tsp.Koords.Keys[row];
+                currCity.koord = new Point(x, y);
+
+                _cityListForAnt.Add(_tsp.Koords.Keys[row], currCity);
+            }
+        }
+
         #endregion
 
         #region algorithm
 
         private void TryToSolveTSP()
         {
+            _drawForm.Invoke(new FormDisablementInvoker(_drawForm.IsAlgoRunning), true);
+
             for (int iter = 0; iter < _iterCount; iter++)
             {
+                if (_bestTourGloabl <= _optTourLength)
+                {
+                    _owner.Invoke(new StopTimerInvoker(_owner.StopTimer));
+                    MessageBox.Show("Optimale Tour gefunden");
+                    return;
+                }
+                if (_bestTourGloabl <= _minTourLength)
+                {
+                    _owner.Invoke(new StopTimerInvoker(_owner.StopTimer));
+                    MessageBox.Show("Gewüsnchte Tour gefunden");
+                    return;
+                }
 
+                _owner.Invoke(new IterCountInvoker(_owner.SetNumberOfIters), iter + 1);
                 _owner.Invoke(new BestTourIterInvoker(_owner.SetBestTourIter), "0");
                 _owner.Invoke(new AVRTourIterInvoker(_owner.SetAVRIter), "0");
                 _bestTourIter = double.PositiveInfinity;
@@ -261,8 +335,8 @@ namespace AntsTSP
                             ant.city = keyToHighestLikeliness;
                             currentWay.Add(_cityList[keyFrom][keyTo]);
                             ant.DeleteCityFromList(keyToHighestLikeliness);
-                            _antList[iterAnt] = ant;  
-                          
+                            _antList[iterAnt] = ant;
+
                             int x = _tsp.Koords[keyToHighestLikeliness].X;
                             int y = _tsp.Koords[keyToHighestLikeliness].Y;
                             currentWayAsArray.Add(new Point(x,y));
@@ -289,18 +363,23 @@ namespace AntsTSP
                     }
 
                     UpdateLength(iterAnt, iter);
+                    if (currentWayAsArray.Count != _bestWay.Count)
+                    {
+                    }
                     _drawForm.Invoke(new UpdateWayByAntInvoker(_drawForm.ShowCurrentWay), currentWayAsArray, _bestWay);
                     
 
                     //Pheromonupdate ausführen
                     for (int row = 1; row <= _cityList.Count; row++)
                     {
-                        for (int col = row; col < _cityList[row].Values.Count; col++)
+                        for (int col = row + 1; col < _cityList[row].Values.Count; col++)
                         {
-                            int small = row;
-                            int big = col;
-                            CheckIndices(ref small, ref big);
-                            City city = _cityList[small][big];
+                            //row ist per Def. immer kleiner oder gleich col
+                            //int small = row;
+                            //int big = col;
+                            //CheckIndices(ref small, ref big);
+                            //City city = _cityList[small][big];
+                            City city = _cityList[row][col];
 
                             double deltaTau = .0;
                             if (currentWay.Contains(city))
@@ -311,7 +390,8 @@ namespace AntsTSP
                             city.phero = (1 - _rho) *
                                 city.phero + deltaTau;
 
-                            _cityList[small][big] = city;
+                            //_cityList[small][big] = city;
+                            _cityList[row][col] = city;
                         }
                     }
 
@@ -323,6 +403,8 @@ namespace AntsTSP
 
             //UpdateTime();
             _owner.Invoke(new StopTimerInvoker(_owner.StopTimer));
+            MessageBox.Show("Alle Iterationen durchlaufen");
+            _drawForm.Invoke(new FormDisablementInvoker(_drawForm.IsAlgoRunning), false);
         }
 
         private void CheckIndices(ref int small, ref int big)
