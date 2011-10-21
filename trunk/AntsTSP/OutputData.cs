@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Xml.Serialization;
+using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +8,7 @@ using System.Text;
 
 namespace AntsTSP
 {
-    [Serializable]
+    [XmlInclude(typeof(Point))]
     public class OutputData
     {
         // TODO
@@ -23,7 +25,9 @@ namespace AntsTSP
         public int _iterCount;
         public int _cityCount;
 
+        
         public ArrayList _bestTour = new ArrayList();
+
         public double _bestLength;
         public String _bestTimeAsString;
         //public ArrayList _avrTour = new ArrayList(); //ham wa nich
@@ -50,7 +54,7 @@ namespace AntsTSP
 
             _cityCount = _owner.GetNumberOfCities();
             TimeSpan span = _owner.GetTime();
-            _bestTimeAsString = "" + span.Minutes + span.Seconds + span.Milliseconds;
+            _bestTimeAsString = "" + span.Minutes+":" + span.Seconds+":" + span.Milliseconds;
 
 
         }
