@@ -14,24 +14,25 @@ namespace AntsTSP
         // -beste Tour(Koordinaten) + Länge + Zeit
         // -durchschnittl. Tour + Länge
 
-        private double _tau;
-        private double _q;
-        private double _rho;
-        private double _alpha;
-        private double _beta;
-        private int _antCount;
-        private int _iterCount;
-        private int _cityCount;
+        public double _tau;
+        public double _q;
+        public double _rho;
+        public double _alpha;
+        public double _beta;
+        public int _antCount;
+        public int _iterCount;
+        public int _cityCount;
 
-        private ArrayList _bestTour = new ArrayList();
-        private double _bestLength;
-        private String _bestTimeAsString;
-        private ArrayList _avrTour = new ArrayList();
-        private double _avrLength;
+        public ArrayList _bestTour = new ArrayList();
+        public double _bestLength;
+        public String _bestTimeAsString;
+        //public ArrayList _avrTour = new ArrayList(); //ham wa nich
+        public double _avrLength;
+
+        private FInput _owner;
 
         public OutputData(double tau, double q, double rho, double alpha, double beta,
-            int antCount, int iterCount, int cityCount, ArrayList best, double bestL,
-            String bestT, ArrayList avr, double avrL)
+            int antCount, int iterCount, ArrayList best, double bestL, double avrL, FInput owner)
         {
             _tau = tau;
             _q = q;
@@ -40,13 +41,23 @@ namespace AntsTSP
             _beta = beta;
             _antCount = antCount;
             _iterCount = iterCount;
-            _cityCount = cityCount;
+            //_cityCount = cityCount;
             _bestTour = best;
             _bestLength = bestL;
-            _bestTimeAsString = bestT;
-            _avrTour = avr;
+            //_bestTimeAsString = bestT;
             _avrLength = avrL;
-        }        
+            _owner = owner;
+
+            _cityCount = _owner.GetNumberOfCities();
+            TimeSpan span = _owner.GetTime();
+            _bestTimeAsString = "" + span.Minutes + span.Seconds + span.Milliseconds;
+
+
+        }
+
+        public OutputData()
+        {
+        }
 
     }
 }

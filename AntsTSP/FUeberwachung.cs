@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Threading;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace AntsTSP
 {
@@ -14,13 +17,13 @@ namespace AntsTSP
     {
         #region private Fields
 
-
         private FDrawForm _drawForm;
         private Color _errCol = Color.Yellow;
         private Color _okCol = Color.White;
 
         private Algorithm _algorithm;
         private LoadTSP _tspFile;
+        private OutputData _outputData;
 
         private bool _antCountFehlerfrei = false;
         private bool _iterCountFehlerfrei = false;
@@ -34,6 +37,7 @@ namespace AntsTSP
 
         private DateTime _startTime;
         private System.Windows.Forms.Timer _timer;
+        private TimeSpan _span;
 
         #endregion
 
@@ -66,7 +70,7 @@ namespace AntsTSP
         }
 
         /// <summary>
-        /// bigger a smaler or equals b
+        /// bigger a smaller or equals b
         /// </summary>
         /// <param name="?"></param>
         /// <returns></returns>
@@ -115,6 +119,18 @@ namespace AntsTSP
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 string path = sfd.FileName;
+
+                if (_algorithm.GetOutputData() != null)
+                {
+                    _outputData = _algorithm.GetOutputData();
+                    OutputWriter.Write(_outputData, sfd.FileName);
+                }
+                else
+                {
+                    MessageBox.Show("Noch keine Ausgabedaten vorhanden");
+                    return;
+                }
+
             }
         }
 
@@ -199,10 +215,7 @@ namespace AntsTSP
 
         #endregion
 
-        public void ShowDrawForm()
-        {
-            this.ShowDialog();
-        }
+        #region SetMethodsForGUI
 
         internal void SetLBLTimeText(string p)
         {
@@ -211,14 +224,8 @@ namespace AntsTSP
         
         private void SetTimer(object sender, EventArgs e)
         {
-            TimeSpan span = DateTime.Now - _startTime;
-            _lblTime.Text = "Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds;
-        }
-
-        public void StopTimer()
-        {
-            _timer.Stop();
-            _btnStart.Enabled = true;
+            _span = DateTime.Now - _startTime;
+            _lblTime.Text = "Zeit: " + _span.Minutes + ":" + _span.Seconds + ":" + _span.Milliseconds;
         }
 
         internal void SetBestTourGlobal(String global)
@@ -243,12 +250,125 @@ namespace AntsTSP
 
         internal void SetNumberOfCities(int numberOfCities)
         {
-            _lblCityCount.Text = "Städte: " + numberOfCities.ToString();
+            _lblCityCount.Text = numberOfCities.ToString();
         }
 
         internal void SetNumberOfIters(int numberOfIters)
         {
-            _lblIterCount.Text = "Iteration " + numberOfIters.ToString();
-        }   
+            _lblIterCount.Text = numberOfIters.ToString();
+        }
+
+        #endregion
+
+        public void ShowDrawForm()
+        {
+            this.ShowDialog();
+        }
+
+        public void StopTimer()
+        {
+            _timer.Stop();
+            _btnStart.Enabled = true;
+        }
+
+        public int GetNumberOfCities()
+        {
+            int numberOfCities;
+            numberOfCities = int.Parse(_lblCityCount.Text);
+            return numberOfCities;
+        }
+
+        public int GetNumberOfIters()
+        {
+            int numberOfIters;
+            numberOfIters = int.Parse(_lblIterCount.Text);
+            return numberOfIters;
+        }
+
+        public TimeSpan GetTime()
+        {
+            return _span;
+        }
+
+        void oldstuff(){
+            //XmlTextWriter myXmlTextWriter = new XmlTextWriter(sfd.FileName, null);
+            //myXmlTextWriter.Formatting = Formatting.Indented;
+            //myXmlTextWriter.WriteStartDocument(false);
+            //myXmlTextWriter.WriteComment("This is a comment");
+
+            //myXmlTextWriter.WriteStartElement("bookstore");
+            //myXmlTextWriter.WriteStartElement("book", null);
+
+            //myXmlTextWriter.WriteElementString("title", null, "The Autobiography of Mark Twain");
+            //myXmlTextWriter.WriteStartElement("Author", null);
+
+            //myXmlTextWriter.WriteElementString("first-name", "Mark");
+            //myXmlTextWriter.WriteElementString("last-name", "Twain");
+            //myXmlTextWriter.WriteEndElement();
+            //myXmlTextWriter.WriteElementString("price", "7.99");
+            //myXmlTextWriter.WriteEndElement();
+
+            //myXmlTextWriter.Flush();
+            //myXmlTextWriter.WriteStartElement("book", null);
+            //myXmlTextWriter.WriteAttributeString("genre", "autobiography");
+            //myXmlTextWriter.WriteAttributeString("publicationdate", "1979");
+            //myXmlTextWriter.WriteAttributeString("ISBN", "0-7356-0562-9");
+            //myXmlTextWriter.WriteEndElement();
+            //myXmlTextWriter.WriteEndElement();
+
+            //myXmlTextWriter.Flush();
+            //myXmlTextWriter.Close();
+            //Console.ReadLine();
+
+            //ach ficken
+
+            //string path = _filePath;
+            //path +="\\" + id.ToString() + ".xml";
+            //XmlSerializer ser = new XmlSerializer(typeof(List<object[]>));
+            //FileStream str = new FileStream(@path, FileMode.Create);
+            //ser.Serialize(str, toWrite);
+
+            //XmlSerializer ser = new XmlSerializer(typeof(List<object>));
+            //FileStream sr = new FileStream(sfd.FileName, FileMode.Create);
+            //ser.Serialize(sr, _outputData);
+            //sr.Close();
+
+
+            //XmlTextWriter xmlWrite = new XmlTextWriter(sfd.FileName, null);//System.Text.Encoding.UTF8);
+            //xmlWrite.Formatting = Formatting.Indented;
+            //xmlWrite.WriteStartDocument();
+            //xmlWrite.WriteComment("This is a comment");
+
+            //xmlWrite.WriteStartElement("Auswertung des Ants TSP");
+            //xmlWrite.WriteElementString("Datum", "" + DateTime.Now);
+
+            //xmlWrite.WriteStartElement("Parameter für den Algorithmus");
+            //xmlWrite.WriteElementString("Alpha", _outputData._alpha.ToString());
+            //xmlWrite.WriteElementString("Beta", _outputData._beta.ToString());
+            //xmlWrite.WriteElementString("Tau", _outputData._tau.ToString());
+            //xmlWrite.WriteElementString("Q", _outputData._q.ToString());
+            //xmlWrite.WriteElementString("Rho", _outputData._rho.ToString());
+            //xmlWrite.WriteEndElement();
+
+            //xmlWrite.WriteStartElement("Anzahl der Iterationen und Ameisen");
+            //xmlWrite.WriteElementString("Ameisen", _outputData._antCount.ToString());
+            //xmlWrite.WriteElementString("Städte", _outputData._cityCount.ToString());
+            //xmlWrite.WriteElementString("Iterationen", _outputData._iterCount.ToString());
+            //xmlWrite.WriteEndElement();
+
+            //xmlWrite.WriteStartElement("Bestwerte");
+            //xmlWrite.WriteElementString("Kürzeste Tour", _outputData._bestLength.ToString());
+            //xmlWrite.WriteElementString("Weg der kürzesten Tour", _outputData._bestTour.ToString());
+            //xmlWrite.WriteElementString("Durchschnittliche Tour", _outputData._avrLength.ToString());
+            //xmlWrite.WriteElementString("Benötigte Zeit", _outputData._bestTimeAsString);
+            //xmlWrite.WriteEndElement();
+
+            //xmlWrite.WriteEndElement();
+            //xmlWrite.WriteEndDocument();
+
+            //xmlWrite.Flush();
+            //xmlWrite.Close();
+            //Console.ReadLine();
+        }
     }
 }

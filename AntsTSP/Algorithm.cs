@@ -5,13 +5,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Threading;
 
 //TODOs:
 //Wenn der OpenFile-Dialog abgebrochen wird, geht trotzdem ein Fenster auf
-//Wenn bereits ein TSP-File geladen ist und ein 2. Mal auf Laden geklickt wird, wirft er nach dem Start eine Exception, weil sich das Prog. auf den falschen Thread bezieht
-//Algo-Schummelei anpassen (mit den optim. Parametern)
+//Wenn bereits ein TSP-File geladen ist und ein 2. Mal auf Laden geklickt wird,
+//wirft er nach dem Start eine Exception, weil sich das Prog. auf den falschen Thread bezieht
 
 namespace AntsTSP
 {
@@ -24,6 +23,8 @@ namespace AntsTSP
         private SortedList<int, City> _cityListForAnt = new SortedList<int,City>();
 
         private LoadTSP _tsp;
+        private OutputData _outputData;
+
         private double _tau;
         private double _q;
         private double _rho;
@@ -46,13 +47,9 @@ namespace AntsTSP
 
         private delegate void UpdateWayByStepInvoker(Point pnt);
         private delegate void UpdateWayByAntInvoker(ArrayList currentWayAsArray, ArrayList bestWay);
-        private delegate void BestTourGlobalInvoker(String global);
-        private delegate void BestTourIterInvoker(String global);
-        private delegate void AVRTourGlobalInvoker(String iter);
-        private delegate void AVRTourIterInvoker(String iter);
+        private delegate void OutputWindowInvoker(String str);
         private delegate void StopTimerInvoker();
         private delegate void FormDisablementInvoker(bool enabled);
-        private delegate void EndFormInvoker(bool enabled);
         private delegate void IterCountInvoker(int iter);
         
         #endregion
@@ -68,6 +65,7 @@ namespace AntsTSP
             double minTour, double optTour)
         {
             _tsp = tsp;
+            _owner = fInput;
 
             _tau = tau;
             _q = q;
@@ -76,7 +74,6 @@ namespace AntsTSP
             _beta = beta;
             _antCount = ants;
             _iterCount = iter;
-            _owner = fInput;
             _drawForm = drawForm;
             _minTourLength = minTour;
             _optTourLength = optTour;
@@ -116,8 +113,6 @@ namespace AntsTSP
                 currentAnt.DeleteCityFromList(currentAnt.city);
 
                 _antList[i] = currentAnt;
-
-                //cityNum += 1;
             }
         }
 
@@ -142,32 +137,7 @@ namespace AntsTSP
 
                 _antList.Add(currentAnt);
             }
-        }
-
-        //private void InitAnts2()
-        //{
-        //    int cityNum = 1;
-
-        //    for (int i = 1; i <= _antCount; i++)
-        //    {
-
-        //        if (cityNum > _cityList.Count)
-        //            cityNum = 1;
-
-        //        cityNum = RandomNumber(1, _cityList.ElementAt(0).Value.Count);
-        //        Ant currentAnt = new Ant();
-        //        currentAnt.walkedDistance = .0;
-        //        currentAnt.firstCity = cityNum;
-        //        currentAnt.city = cityNum;
-        //        SortedList<int, City> lst = new SortedList<int, City>(_cityList.ElementAt(0).Value);
-        //        currentAnt.cityList = lst;
-        //        currentAnt.DeleteCityFromList(currentAnt.city);
-
-        //        _antList.Add(currentAnt);
-
-        //        //cityNum += 1;
-        //    }
-        //}
+        } 
 
         private void InitCityList()
         {
@@ -194,18 +164,18 @@ namespace AntsTSP
                     double atractivity;
                     double dist;
 
-                    if (col == row)
-                    {
-                        dist = 0;
-                        phero = 0;
-                        atractivity = 0;
-                    }
-                    else 
-                    {
+                    //if (col == row)
+                    //{
+                    //    dist = 0;
+                    //    phero = 0;
+                    //    atractivity = 0;
+                    //}
+                    //else 
+                    //{
                         dist = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
                         phero = _tau;
                         atractivity = 1 / dist;
-                    }
+                    //}
                     City currCity = new City();
                     currCity.key = _tsp.Koords.Keys[col];
                     currCity.atractivity = atractivity;
@@ -244,10 +214,12 @@ namespace AntsTSP
 
         private void TryToSolveTSP()
         {
+            //Zeichenform akzeptiert keine Mausklicks mehr
             _drawForm.Invoke(new FormDisablementInvoker(_drawForm.IsAlgoRunning), true);
 
             for (int iter = 0; iter < _iterCount; iter++)
             {
+                //Überprüfen der Abbruchkriterien
                 if (_bestTourGloabl <= _optTourLength)
                 {
                     _owner.Invoke(new StopTimerInvoker(_owner.StopTimer));
@@ -261,9 +233,10 @@ namespace AntsTSP
                     return;
                 }
 
+                //Werte der GUI und Bestwerte der Iteration aktualisieren
                 _owner.Invoke(new IterCountInvoker(_owner.SetNumberOfIters), iter + 1);
-                _owner.Invoke(new BestTourIterInvoker(_owner.SetBestTourIter), "0");
-                _owner.Invoke(new AVRTourIterInvoker(_owner.SetAVRIter), "0");
+                _owner.Invoke(new OutputWindowInvoker(_owner.SetBestTourIter), "0");
+                _owner.Invoke(new OutputWindowInvoker(_owner.SetAVRIter), "0");
                 _bestTourIter = double.PositiveInfinity;
                 _avrTourIter = 0;
 
@@ -277,13 +250,14 @@ namespace AntsTSP
 
                     while (_antList[iterAnt].cityList.Count > 0)
                     {
+                        //enthält den Wert der attraktivsten Strecke
                         double highestLikeliness = .0;
+                        //enthält den Key zu der Stadt, die auf der attraktivsten Strecke liegt
                         int keyToHighestLikeliness = -1;
 
                         //für jede noch nicht besuchte Stadt der Ameise die likeliness berechnen
                         foreach (City cityToGo in _antList[iterAnt].cityList.Values)
                         {
-                            
                             // Nenner der Formel
                             double sum = .0;
                             int smallForNenner = -1;
@@ -356,29 +330,19 @@ namespace AntsTSP
                     _antList[iterAnt] = ant; ;
 
                     // GUI aktualisieren
-
                     if (_antList[iterAnt].walkedDistance < _bestTourGloabl)
                     {
                         _bestWay = currentWayAsArray;
                     }
 
                     UpdateLength(iterAnt, iter);
-                    if (currentWayAsArray.Count != _bestWay.Count)
-                    {
-                    }
                     _drawForm.Invoke(new UpdateWayByAntInvoker(_drawForm.ShowCurrentWay), currentWayAsArray, _bestWay);
-                    
 
                     //Pheromonupdate ausführen
                     for (int row = 1; row <= _cityList.Count; row++)
                     {
                         for (int col = row + 1; col < _cityList[row].Values.Count; col++)
                         {
-                            //row ist per Def. immer kleiner oder gleich col
-                            //int small = row;
-                            //int big = col;
-                            //CheckIndices(ref small, ref big);
-                            //City city = _cityList[small][big];
                             City city = _cityList[row][col];
 
                             double deltaTau = .0;
@@ -390,7 +354,6 @@ namespace AntsTSP
                             city.phero = (1 - _rho) *
                                 city.phero + deltaTau;
 
-                            //_cityList[small][big] = city;
                             _cityList[row][col] = city;
                         }
                     }
@@ -401,10 +364,11 @@ namespace AntsTSP
                 
             }//Alle Iterationen sind beendet
 
-            //UpdateTime();
             _owner.Invoke(new StopTimerInvoker(_owner.StopTimer));
             MessageBox.Show("Alle Iterationen durchlaufen");
             _drawForm.Invoke(new FormDisablementInvoker(_drawForm.IsAlgoRunning), false);
+            _outputData = new OutputData(_tau, _q, _rho, _alpha, _beta, _antCount, _iterCount,
+                _bestWay, _bestTourGloabl, _avrTourGloabl, _owner);
         }
 
         private void CheckIndices(ref int small, ref int big)
@@ -427,6 +391,14 @@ namespace AntsTSP
 
         #region updateMethods
 
+        public OutputData GetOutputData()
+        {
+            if (_outputData == null)
+            {
+                return null;
+            }
+            return _outputData;
+        }
 
         private void UpdateLength(int iterAnt, int iter)
         {
@@ -434,32 +406,20 @@ namespace AntsTSP
             {
                 _bestTourGloabl = _antList[iterAnt].walkedDistance;
 
-                _owner.Invoke(new BestTourGlobalInvoker(_owner.SetBestTourGlobal), _bestTourGloabl.ToString());
+                _owner.Invoke(new OutputWindowInvoker(_owner.SetBestTourGlobal), _bestTourGloabl.ToString());
             }
             if (_antList[iterAnt].walkedDistance < _bestTourIter)
             {
                 _bestTourIter = _antList[iterAnt].walkedDistance;
 
-                _owner.Invoke(new BestTourIterInvoker(_owner.SetBestTourIter), _bestTourIter.ToString());
+                _owner.Invoke(new OutputWindowInvoker(_owner.SetBestTourIter), _bestTourIter.ToString());
             }
-
-
-
             _avrTourIter = _avrTourIter * iterAnt / (iterAnt + 1) + _antList[iterAnt].walkedDistance / (iterAnt + 1);
             _avrTourGloabl = _avrTourGloabl * iter / (iter + 1)  + _avrTourIter / (iter + 1);
 
-            _owner.Invoke(new AVRTourGlobalInvoker(_owner.SetAVRGlobal), _avrTourGloabl.ToString());
-            _owner.Invoke(new AVRTourIterInvoker(_owner.SetAVRIter), _avrTourIter.ToString());
-
-
+            _owner.Invoke(new OutputWindowInvoker(_owner.SetAVRGlobal), _avrTourGloabl.ToString());
+            _owner.Invoke(new OutputWindowInvoker(_owner.SetAVRIter), _avrTourIter.ToString());
         }        
-
- 
-        //private void UpdateTime()
-        //{
-        //    TimeSpan span = DateTime.Now - _startTime;
-        //    _owner.Invoke(new StopTimerInvoker(_owner.SetLBLTimeText), "Zeit: " + span.Minutes + ":" + span.Seconds + ":" + span.Milliseconds);
-        //}        
         #endregion
     }
 }
