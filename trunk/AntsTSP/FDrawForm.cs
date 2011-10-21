@@ -13,22 +13,23 @@ namespace AntsTSP
 {
     public partial class FDrawForm : Form
     {
+        #region private Fields
+
         private delegate void CityNumberInvoker(int numberOfCities);
 
         private LoadTSP _tspFile;
         private ArrayList _way = new ArrayList();
         private Point[] _wayAsArray;
         private Point[] _bestWayAsArray;
-        private Point[] _wayAsSortedListWithSkal;
-        private Point[] _bestWayAsSortedListWithSkal;
+        private Point[] _wayAsArrayWithSkal;
+        private Point[] _bestWayAsArrayWithSkal;
         private bool _algoIsRunning = false;
         private FInput _owner;
 
-        private const int _skalAbsolut = 2;
         private double _skalX = .0;
         private double _skalY = .0;
-        private const double _maxHeight = 1500;
-        private const double _maxWidth = 2000;
+        private const double _maxHeight = 1500; //Y-Höchstwert der TSP-Koords. inkl. Puffer
+        private const double _maxWidth = 2000;//X-Höchstwert der TSP-Koords. inkl. Puffer
 
         public ArrayList Way
         {
@@ -36,26 +37,45 @@ namespace AntsTSP
             set { _way = value; }
         }
 
+        #endregion
+
+        #region Constructors
+
+        public FDrawForm(LoadTSP load, FInput owner)
+        {
+            InitializeComponent();
+
+            _tspFile = load;
+
+            Thread t = new Thread(new ThreadStart(ShowDrawForm));
+            t.Start();
+            _owner = owner;
+            _owner.Invoke(new CityNumberInvoker(_owner.SetNumberOfCities), _tspFile.Koords.Count);
+        }
+
+        #endregion
+
+        #region Methods
+
         public void IsAlgoRunning(bool enabled)
         {
             _algoIsRunning = enabled;
         }
 
+        private void ShowDrawForm()
+        {
+            this.ShowDialog();
+        }
+
         public void ShowCurrentWay(ArrayList currentWay, ArrayList bestWay)
         {
             _wayAsArray = new Point[currentWay.Count];
-            //if (!_bestWayAsArray.Equals(bestWay))
-            //{
                 _bestWayAsArray = new Point[bestWay.Count];
-            //}
 
             for (int i = 0; i < currentWay.Count; i++)
             {
                 int pointX = ((Point)(currentWay[i])).X;
                 int pointY = ((Point)(currentWay[i])).Y;
-
-                //int pointX = (int)(((Point)(points[i])).X * _skalX);
-                //int pointY = (int)(((Point)(points[i])).Y * _skalY);
 
                 _wayAsArray[i] = new Point(pointX, pointY);
 
@@ -69,58 +89,24 @@ namespace AntsTSP
 
         private void UpdateCurrentWay()
         {
-            _wayAsSortedListWithSkal = new Point[_wayAsArray.Length];
-            _bestWayAsSortedListWithSkal = new Point[_bestWayAsArray.Length];
+            _wayAsArrayWithSkal = new Point[_wayAsArray.Length];
+            _bestWayAsArrayWithSkal = new Point[_bestWayAsArray.Length];
 
             for (int i = 0; i < _wayAsArray.Length; i++)
             {
-                //das geht beim erneuten Zeichnen krachen, die Werte in _wayAsArray auch verändert werden
-                //weil Point nur ein Struct ist und das byRef übergeben wird
                 int x = (int)(_wayAsArray[i].X * _skalX);
                 int y = (int)(_wayAsArray[i].Y * _skalY);
-                _wayAsSortedListWithSkal[i] = new Point(x, y);
-                //_wayAsSortedListWithSkal[i].Y = (int)(_wayAsArray[i].Y * _skalY);
+                _wayAsArrayWithSkal[i] = new Point(x, y);
 
                 x = (int)(_bestWayAsArray[i].X * _skalX);
                 y = (int)(_bestWayAsArray[i].Y * _skalY);
-                _bestWayAsSortedListWithSkal[i] = new Point (x,y);
-
+                _bestWayAsArrayWithSkal[i] = new Point(x, y);
             }
         }
 
-        private void UpdateCurrentWayNotWorking()
-        {
-            _wayAsSortedListWithSkal = _wayAsArray;
+        #endregion
 
-            for (int i = 0; i < _wayAsArray.Length; i++)
-            {
-                //_wayAsArray[i].X = (int)(_wayAsArray[i].X * skalForWayX);
-                //_wayAsArray[i].Y = (int)(_wayAsArray[i].Y * skalForWayY);
-
-                //Point point = new Point((int)(wayAsArrayAsReference[i].X * _skalX),(int)(wayAsArrayAsReference[i].Y * _skalY));
-
-                //_wayAsSortedListWithSkal.Add(i,point);
-                _wayAsSortedListWithSkal[i].X = (int)(_wayAsArray[i].X * _skalX);
-                _wayAsSortedListWithSkal[i].Y = (int)(_wayAsArray[i].Y * _skalY);
-            }
-        }
-
-        public FDrawForm(LoadTSP load, FInput owner)
-        {
-            InitializeComponent();
-
-            _tspFile = load;
-            
-            Thread t = new Thread(new ThreadStart(ShowDrawForm));
-            t.Start();
-            _owner = owner;
-            _owner.Invoke(new CityNumberInvoker(_owner.SetNumberOfCities), _tspFile.Koords.Count);
-        }
-
-        private void ShowDrawForm()
-        {
-            this.ShowDialog();
-        }
+        #region Paint
 
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
@@ -135,7 +121,6 @@ namespace AntsTSP
             
 
             Graphics g = this.CreateGraphics();
-            Pen redPen = new Pen(Color.Red);
             Pen grayPen = new Pen(Color.Gray);
             Pen thickPen = new Pen(Color.Red, 2);
 
@@ -150,11 +135,14 @@ namespace AntsTSP
             if((_wayAsArray != null) && (_wayAsArray.Length > 1))
             {
                 UpdateCurrentWay();
-                g.DrawPolygon(grayPen, _wayAsSortedListWithSkal);
-                g.DrawPolygon(thickPen, _bestWayAsSortedListWithSkal);
-                //g.DrawPolygon(pen, _wayAsArray);
+                g.DrawPolygon(grayPen, _wayAsArrayWithSkal);
+                g.DrawPolygon(thickPen, _bestWayAsArrayWithSkal);
             }            
         }
+
+        #endregion
+
+        #region MouseEvents
 
         private void FDrawForm_MouseClick(object sender, MouseEventArgs e)
         {
@@ -172,6 +160,7 @@ namespace AntsTSP
                     _owner.Invoke(new CityNumberInvoker(_owner.SetNumberOfCities), _tspFile.Koords.Count);
                 }
             }
-        }             
+        }
+        #endregion
     }
 }

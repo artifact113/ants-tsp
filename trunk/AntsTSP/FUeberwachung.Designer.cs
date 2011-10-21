@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FInput));
             this._gbOutput = new System.Windows.Forms.GroupBox();
+            this._lblIterCount = new System.Windows.Forms.Label();
             this._lblTime = new System.Windows.Forms.Label();
             this._gbAvrg = new System.Windows.Forms.GroupBox();
             this._tbAVRIter = new System.Windows.Forms.TextBox();
@@ -68,7 +69,8 @@
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._smiTSPLadenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tODOErgsSpeichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._lblIterCount = new System.Windows.Forms.Label();
+            this._lblCities = new System.Windows.Forms.Label();
+            this._lblIter = new System.Windows.Forms.Label();
             this._gbOutput.SuspendLayout();
             this._gbAvrg.SuspendLayout();
             this._gbBest.SuspendLayout();
@@ -80,6 +82,8 @@
             // 
             this._gbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this._gbOutput.Controls.Add(this._lblIter);
+            this._gbOutput.Controls.Add(this._lblCities);
             this._gbOutput.Controls.Add(this._lblIterCount);
             this._gbOutput.Controls.Add(this._lblTime);
             this._gbOutput.Controls.Add(this._gbAvrg);
@@ -91,6 +95,15 @@
             this._gbOutput.TabIndex = 0;
             this._gbOutput.TabStop = false;
             this._gbOutput.Text = "Ausgabe";
+            // 
+            // _lblIterCount
+            // 
+            this._lblIterCount.AutoSize = true;
+            this._lblIterCount.Location = new System.Drawing.Point(321, 116);
+            this._lblIterCount.Name = "_lblIterCount";
+            this._lblIterCount.Size = new System.Drawing.Size(14, 15);
+            this._lblIterCount.TabIndex = 6;
+            this._lblIterCount.Text = "0";
             // 
             // _lblTime
             // 
@@ -198,11 +211,11 @@
             // _lblCityCount
             // 
             this._lblCityCount.AutoSize = true;
-            this._lblCityCount.Location = new System.Drawing.Point(376, 116);
+            this._lblCityCount.Location = new System.Drawing.Point(427, 116);
             this._lblCityCount.Name = "_lblCityCount";
-            this._lblCityCount.Size = new System.Drawing.Size(45, 15);
+            this._lblCityCount.Size = new System.Drawing.Size(14, 15);
             this._lblCityCount.TabIndex = 4;
-            this._lblCityCount.Text = "Städte:";
+            this._lblCityCount.Text = "0";
             // 
             // _gbConfig
             // 
@@ -243,6 +256,8 @@
             this._lblMinTourLength.TabIndex = 22;
             this._lblMinTourLength.Text = "Minimale Tour";
             this._lblMinTourLength.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this._ttInputTooltip.SetToolTip(this._lblMinTourLength, "Schwellwert für gewüsnchte Tour.\r\nAlgorithmus bricht bei Erreichen oder Unterbiet" +
+                    "en des Wertes ab.");
             // 
             // _lblOptTourLength
             // 
@@ -253,6 +268,7 @@
             this._lblOptTourLength.TabIndex = 21;
             this._lblOptTourLength.Text = "Optimale Tour";
             this._lblOptTourLength.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this._ttInputTooltip.SetToolTip(this._lblOptTourLength, "Wert für die optimale Tour.\r\nAlgorithmus bricht bei Erreichen dieses Wertes ab.");
             // 
             // _tbMinTour
             // 
@@ -446,14 +462,23 @@
             this.tODOErgsSpeichernToolStripMenuItem.Text = "... Resultat speichern";
             this.tODOErgsSpeichernToolStripMenuItem.Click += new System.EventHandler(this.tODOErgsSpeichernToolStripMenuItem_Click);
             // 
-            // _lblIterCount
+            // _lblCities
             // 
-            this._lblIterCount.AutoSize = true;
-            this._lblIterCount.Location = new System.Drawing.Point(285, 116);
-            this._lblIterCount.Name = "_lblIterCount";
-            this._lblIterCount.Size = new System.Drawing.Size(51, 15);
-            this._lblIterCount.TabIndex = 6;
-            this._lblIterCount.Text = "Iteration";
+            this._lblCities.AutoSize = true;
+            this._lblCities.Location = new System.Drawing.Point(376, 116);
+            this._lblCities.Name = "_lblCities";
+            this._lblCities.Size = new System.Drawing.Size(45, 15);
+            this._lblCities.TabIndex = 7;
+            this._lblCities.Text = "Städte:";
+            // 
+            // _lblIter
+            // 
+            this._lblIter.AutoSize = true;
+            this._lblIter.Location = new System.Drawing.Point(261, 116);
+            this._lblIter.Name = "_lblIter";
+            this._lblIter.Size = new System.Drawing.Size(54, 15);
+            this._lblIter.TabIndex = 8;
+            this._lblIter.Text = "Iteration:";
             // 
             // FInput
             // 
@@ -524,5 +549,7 @@
         private System.Windows.Forms.TextBox _tbMinTour;
         private System.Windows.Forms.TextBox _tbOptTour;
         private System.Windows.Forms.Label _lblIterCount;
+        private System.Windows.Forms.Label _lblIter;
+        private System.Windows.Forms.Label _lblCities;
     }
 }
