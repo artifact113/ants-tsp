@@ -120,6 +120,7 @@ namespace AntsTSP
             {
                 string path = sfd.FileName;
 
+                // TODO Wat is wenn ma nochnich der algo jelaufen is?
                 if (_algorithm.GetOutputData() != null)
                 {
                     _outputData = _algorithm.GetOutputData();

@@ -11,9 +11,17 @@ namespace AntsTSP
     {
         public static void Write(OutputData outputData, string path)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(OutputData));
-            FileStream stream = new FileStream(@path, FileMode.Create);
-            serializer.Serialize(stream, outputData);
+            try
+            {                
+                XmlSerializer serializer = new XmlSerializer(typeof(OutputData));
+                FileStream stream = new FileStream(@path, FileMode.Create);
+                serializer.Serialize(stream, outputData);
+                stream.Close();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
         }
     }
 }
