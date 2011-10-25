@@ -14,8 +14,8 @@ namespace AntsTSP
     public partial class FDrawForm : Form
     {
         #region private Fields
-
         private delegate void CityNumberInvoker(int numberOfCities);
+        public bool _isClosed;
 
         private LoadTSP _tspFile;
         private ArrayList _way = new ArrayList();
@@ -44,6 +44,7 @@ namespace AntsTSP
         public FDrawForm(LoadTSP load, FInput owner)
         {
             InitializeComponent();
+            _isClosed = false;
 
             _tspFile = load;
 
@@ -162,5 +163,10 @@ namespace AntsTSP
             }
         }
         #endregion
+
+        private void FDrawForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _isClosed = true;
+        }
     }
 }

@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FInput));
             this._gbOutput = new System.Windows.Forms.GroupBox();
+            this._lblAntCount = new System.Windows.Forms.Label();
+            this._lblAnt = new System.Windows.Forms.Label();
+            this._lblIter = new System.Windows.Forms.Label();
+            this._lblCities = new System.Windows.Forms.Label();
             this._lblIterCount = new System.Windows.Forms.Label();
             this._lblTime = new System.Windows.Forms.Label();
             this._gbAvrg = new System.Windows.Forms.GroupBox();
@@ -61,16 +65,17 @@
             this._tbAlpha = new System.Windows.Forms.TextBox();
             this._lblAlpha = new System.Windows.Forms.Label();
             this._tbIterationCount = new System.Windows.Forms.TextBox();
-            this._lblCountIterations = new System.Windows.Forms.Label();
+            this._lblIterConf = new System.Windows.Forms.Label();
             this._tbAntCount = new System.Windows.Forms.TextBox();
-            this._lblAntCount = new System.Windows.Forms.Label();
+            this._lblAntConf = new System.Windows.Forms.Label();
             this._ttInputTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._smiTSPLadenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tODOErgsSpeichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._lblCities = new System.Windows.Forms.Label();
-            this._lblIter = new System.Windows.Forms.Label();
+            this._smiBeendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._smiLeeresTSPLadenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._btnStopp = new System.Windows.Forms.Button();
             this._gbOutput.SuspendLayout();
             this._gbAvrg.SuspendLayout();
             this._gbBest.SuspendLayout();
@@ -82,6 +87,8 @@
             // 
             this._gbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this._gbOutput.Controls.Add(this._lblAntCount);
+            this._gbOutput.Controls.Add(this._lblAnt);
             this._gbOutput.Controls.Add(this._lblIter);
             this._gbOutput.Controls.Add(this._lblCities);
             this._gbOutput.Controls.Add(this._lblIterCount);
@@ -96,10 +103,46 @@
             this._gbOutput.TabStop = false;
             this._gbOutput.Text = "Ausgabe";
             // 
+            // _lblAntCount
+            // 
+            this._lblAntCount.AutoSize = true;
+            this._lblAntCount.Location = new System.Drawing.Point(261, 116);
+            this._lblAntCount.Name = "_lblAntCount";
+            this._lblAntCount.Size = new System.Drawing.Size(14, 15);
+            this._lblAntCount.TabIndex = 10;
+            this._lblAntCount.Text = "0";
+            // 
+            // _lblAnt
+            // 
+            this._lblAnt.AutoSize = true;
+            this._lblAnt.Location = new System.Drawing.Point(198, 116);
+            this._lblAnt.Name = "_lblAnt";
+            this._lblAnt.Size = new System.Drawing.Size(51, 15);
+            this._lblAnt.TabIndex = 9;
+            this._lblAnt.Text = "Ameise:";
+            // 
+            // _lblIter
+            // 
+            this._lblIter.AutoSize = true;
+            this._lblIter.Location = new System.Drawing.Point(307, 116);
+            this._lblIter.Name = "_lblIter";
+            this._lblIter.Size = new System.Drawing.Size(54, 15);
+            this._lblIter.TabIndex = 8;
+            this._lblIter.Text = "Iteration:";
+            // 
+            // _lblCities
+            // 
+            this._lblCities.AutoSize = true;
+            this._lblCities.Location = new System.Drawing.Point(412, 116);
+            this._lblCities.Name = "_lblCities";
+            this._lblCities.Size = new System.Drawing.Size(45, 15);
+            this._lblCities.TabIndex = 7;
+            this._lblCities.Text = "Städte:";
+            // 
             // _lblIterCount
             // 
             this._lblIterCount.AutoSize = true;
-            this._lblIterCount.Location = new System.Drawing.Point(321, 116);
+            this._lblIterCount.Location = new System.Drawing.Point(367, 116);
             this._lblIterCount.Name = "_lblIterCount";
             this._lblIterCount.Size = new System.Drawing.Size(14, 15);
             this._lblIterCount.TabIndex = 6;
@@ -211,7 +254,7 @@
             // _lblCityCount
             // 
             this._lblCityCount.AutoSize = true;
-            this._lblCityCount.Location = new System.Drawing.Point(427, 116);
+            this._lblCityCount.Location = new System.Drawing.Point(463, 116);
             this._lblCityCount.Name = "_lblCityCount";
             this._lblCityCount.Size = new System.Drawing.Size(14, 15);
             this._lblCityCount.TabIndex = 4;
@@ -221,6 +264,7 @@
             // 
             this._gbConfig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this._gbConfig.Controls.Add(this._btnStopp);
             this._gbConfig.Controls.Add(this._lblMinTourLength);
             this._gbConfig.Controls.Add(this._lblOptTourLength);
             this._gbConfig.Controls.Add(this._tbMinTour);
@@ -237,9 +281,9 @@
             this._gbConfig.Controls.Add(this._tbAlpha);
             this._gbConfig.Controls.Add(this._lblAlpha);
             this._gbConfig.Controls.Add(this._tbIterationCount);
-            this._gbConfig.Controls.Add(this._lblCountIterations);
+            this._gbConfig.Controls.Add(this._lblIterConf);
             this._gbConfig.Controls.Add(this._tbAntCount);
-            this._gbConfig.Controls.Add(this._lblAntCount);
+            this._gbConfig.Controls.Add(this._lblAntConf);
             this._gbConfig.Location = new System.Drawing.Point(12, 197);
             this._gbConfig.Name = "_gbConfig";
             this._gbConfig.Size = new System.Drawing.Size(510, 159);
@@ -403,14 +447,14 @@
             this._tbIterationCount.TabIndex = 4;
             this._tbIterationCount.TextChanged += new System.EventHandler(this.TextChanged);
             // 
-            // _lblCountIterations
+            // _lblIterConf
             // 
-            this._lblCountIterations.AutoSize = true;
-            this._lblCountIterations.Location = new System.Drawing.Point(23, 52);
-            this._lblCountIterations.Name = "_lblCountIterations";
-            this._lblCountIterations.Size = new System.Drawing.Size(65, 15);
-            this._lblCountIterations.TabIndex = 6;
-            this._lblCountIterations.Text = "Iterationen";
+            this._lblIterConf.AutoSize = true;
+            this._lblIterConf.Location = new System.Drawing.Point(23, 52);
+            this._lblIterConf.Name = "_lblIterConf";
+            this._lblIterConf.Size = new System.Drawing.Size(65, 15);
+            this._lblIterConf.TabIndex = 6;
+            this._lblIterConf.Text = "Iterationen";
             // 
             // _tbAntCount
             // 
@@ -420,14 +464,14 @@
             this._tbAntCount.TabIndex = 3;
             this._tbAntCount.TextChanged += new System.EventHandler(this.TextChanged);
             // 
-            // _lblAntCount
+            // _lblAntConf
             // 
-            this._lblAntCount.AutoSize = true;
-            this._lblAntCount.Location = new System.Drawing.Point(33, 26);
-            this._lblAntCount.Name = "_lblAntCount";
-            this._lblAntCount.Size = new System.Drawing.Size(55, 15);
-            this._lblAntCount.TabIndex = 0;
-            this._lblAntCount.Text = "Ameisen";
+            this._lblAntConf.AutoSize = true;
+            this._lblAntConf.Location = new System.Drawing.Point(33, 26);
+            this._lblAntConf.Name = "_lblAntConf";
+            this._lblAntConf.Size = new System.Drawing.Size(55, 15);
+            this._lblAntConf.TabIndex = 0;
+            this._lblAntConf.Text = "Ameisen";
             // 
             // menuStrip1
             // 
@@ -443,7 +487,9 @@
             // 
             this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._smiTSPLadenToolStripMenuItem,
-            this.tODOErgsSpeichernToolStripMenuItem});
+            this._smiLeeresTSPLadenToolStripMenuItem,
+            this.tODOErgsSpeichernToolStripMenuItem,
+            this._smiBeendenToolStripMenuItem});
             this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
             this.dateiToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.dateiToolStripMenuItem.Text = "Datei";
@@ -451,34 +497,41 @@
             // _smiTSPLadenToolStripMenuItem
             // 
             this._smiTSPLadenToolStripMenuItem.Name = "_smiTSPLadenToolStripMenuItem";
-            this._smiTSPLadenToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this._smiTSPLadenToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this._smiTSPLadenToolStripMenuItem.Text = "... TSP laden";
             this._smiTSPLadenToolStripMenuItem.Click += new System.EventHandler(this._smiTSPLadenToolStripMenuItem_Click);
             // 
             // tODOErgsSpeichernToolStripMenuItem
             // 
             this.tODOErgsSpeichernToolStripMenuItem.Name = "tODOErgsSpeichernToolStripMenuItem";
-            this.tODOErgsSpeichernToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.tODOErgsSpeichernToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.tODOErgsSpeichernToolStripMenuItem.Text = "... Resultat speichern";
             this.tODOErgsSpeichernToolStripMenuItem.Click += new System.EventHandler(this.tODOErgsSpeichernToolStripMenuItem_Click);
             // 
-            // _lblCities
+            // _smiBeendenToolStripMenuItem
             // 
-            this._lblCities.AutoSize = true;
-            this._lblCities.Location = new System.Drawing.Point(376, 116);
-            this._lblCities.Name = "_lblCities";
-            this._lblCities.Size = new System.Drawing.Size(45, 15);
-            this._lblCities.TabIndex = 7;
-            this._lblCities.Text = "Städte:";
+            this._smiBeendenToolStripMenuItem.Name = "_smiBeendenToolStripMenuItem";
+            this._smiBeendenToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this._smiBeendenToolStripMenuItem.Text = "... Beenden";
+            this._smiBeendenToolStripMenuItem.Click += new System.EventHandler(this._smiBeendenToolStripMenuItem_Click);
             // 
-            // _lblIter
+            // _smiLeeresTSPLadenToolStripMenuItem
             // 
-            this._lblIter.AutoSize = true;
-            this._lblIter.Location = new System.Drawing.Point(261, 116);
-            this._lblIter.Name = "_lblIter";
-            this._lblIter.Size = new System.Drawing.Size(54, 15);
-            this._lblIter.TabIndex = 8;
-            this._lblIter.Text = "Iteration:";
+            this._smiLeeresTSPLadenToolStripMenuItem.Name = "_smiLeeresTSPLadenToolStripMenuItem";
+            this._smiLeeresTSPLadenToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this._smiLeeresTSPLadenToolStripMenuItem.Text = "... leeres TSP erstellen";
+            this._smiLeeresTSPLadenToolStripMenuItem.Click += new System.EventHandler(this._smiLeeresTSPLadenToolStripMenuItem_Click);
+            // 
+            // _btnStopp
+            // 
+            this._btnStopp.Location = new System.Drawing.Point(117, 131);
+            this._btnStopp.Name = "_btnStopp";
+            this._btnStopp.Size = new System.Drawing.Size(98, 23);
+            this._btnStopp.TabIndex = 23;
+            this._btnStopp.Text = "Stopp";
+            this._btnStopp.UseVisualStyleBackColor = true;
+            this._btnStopp.Visible = false;
+            this._btnStopp.Click += new System.EventHandler(this._btnStopp_Click);
             // 
             // FInput
             // 
@@ -493,6 +546,7 @@
             this.MaximizeBox = false;
             this.Name = "FInput";
             this.Text = "Eingabefenster";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FInput_FormClosing);
             this._gbOutput.ResumeLayout(false);
             this._gbOutput.PerformLayout();
             this._gbAvrg.ResumeLayout(false);
@@ -535,10 +589,10 @@
         private System.Windows.Forms.TextBox _tbAlpha;
         private System.Windows.Forms.Label _lblAlpha;
         private System.Windows.Forms.TextBox _tbIterationCount;
-        private System.Windows.Forms.Label _lblCountIterations;
+        private System.Windows.Forms.Label _lblIterConf;
         private System.Windows.Forms.Label _lblCityCount;
         private System.Windows.Forms.TextBox _tbAntCount;
-        private System.Windows.Forms.Label _lblAntCount;
+        private System.Windows.Forms.Label _lblAntConf;
         private System.Windows.Forms.ToolTip _ttInputTooltip;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem;
@@ -551,5 +605,10 @@
         private System.Windows.Forms.Label _lblIterCount;
         private System.Windows.Forms.Label _lblIter;
         private System.Windows.Forms.Label _lblCities;
+        private System.Windows.Forms.Label _lblAntCount;
+        private System.Windows.Forms.Label _lblAnt;
+        private System.Windows.Forms.ToolStripMenuItem _smiBeendenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _smiLeeresTSPLadenToolStripMenuItem;
+        private System.Windows.Forms.Button _btnStopp;
     }
 }
