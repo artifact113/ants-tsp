@@ -24,6 +24,7 @@ namespace AntsTSP
 
         private LoadTSP _tsp;
         private OutputData _outputData;
+        private bool _stopNow = false;
 
         private double _tau;
         private double _q;
@@ -51,6 +52,7 @@ namespace AntsTSP
         private delegate void StopTimerInvoker();
         private delegate void FormDisablementInvoker(bool enabled);
         private delegate void IterCountInvoker(int iter);
+        private delegate void AntCountInvoker(int ants);
         
         #endregion
 
@@ -244,10 +246,15 @@ namespace AntsTSP
                 //für jede Ameise
                 for (int iterAnt = 0; iterAnt < _antList.Count; iterAnt++)
                 {
-                    Ant ant = _antList[iterAnt];      
-                    
-                    ArrayList currentWayAsArray = new ArrayList();
+                    if (_stopNow)
+                    {
+                        return;
+                    }
 
+                    Ant ant = _antList[iterAnt];      
+                    ArrayList currentWayAsArray = new ArrayList();
+                    _owner.Invoke(new AntCountInvoker(_owner.SetNumberOfAnts), iterAnt + 1);
+                    
                     while (_antList[iterAnt].cityList.Count > 0)
                     {
                         //enthält den Wert der attraktivsten Strecke
@@ -272,6 +279,9 @@ namespace AntsTSP
 
                                 sum += Math.Pow(_cityList[smallForNenner][bigForNenner].phero, _alpha)
                                     * Math.Pow(_cityList[smallForNenner][bigForNenner].atractivity, _beta);
+                                if (sum == 0)
+                                {
+                                }
                             }
                             int small = cityToGo.key;
                             int big = _antList[iterAnt].city;
@@ -385,6 +395,12 @@ namespace AntsTSP
         private int RandomNumber(int min, int max)
         {
             return min + (new Random()).Next(max - min);
+        }
+
+        public void Stop()
+        {
+            _stopNow = true;
+            _owner.Invoke(new StopTimerInvoker(_owner.StopTimer));
         }
 
         #endregion

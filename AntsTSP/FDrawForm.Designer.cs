@@ -40,6 +40,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FDrawForm";
             this.Text = "Ants Frame";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FDrawForm_FormClosed);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainForm_Paint);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FDrawForm_MouseClick);
             this.ResumeLayout(false);

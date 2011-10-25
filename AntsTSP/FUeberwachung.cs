@@ -39,6 +39,9 @@ namespace AntsTSP
         private System.Windows.Forms.Timer _timer;
         private TimeSpan _span;
 
+        private delegate void DrawFormCloseInvoker();
+        private delegate void StopAlgoInvoker();
+
         #endregion
 
         #region constructors
@@ -107,31 +110,63 @@ namespace AntsTSP
 
         private void _smiTSPLadenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (_drawForm != null)
+            {
+                _drawForm.Invoke(new DrawFormCloseInvoker(_drawForm.Close));
+            }
+
             _tspFile = new LoadTSP();
-            _drawForm = new FDrawForm(_tspFile, this);
+            if (_tspFile._doNotOpenTSPForm == false)
+            {
+                _drawForm = new FDrawForm(_tspFile, this);
+            }
+        }
+
+        private void _smiLeeresTSPLadenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_drawForm != null)
+            {
+                _drawForm.Invoke(new DrawFormCloseInvoker(_drawForm.Close));
+            }
+
+            _tspFile = new LoadTSP(true);
+            if (_tspFile._doNotOpenTSPForm == false)
+            {
+                _drawForm = new FDrawForm(_tspFile, this);
+            }
         }
 
         private void tODOErgsSpeichernToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "Speichern ...";
-            sfd.Filter = sfd.Filter = "xml files (*.xml)|*.xml";
-            if (sfd.ShowDialog() == DialogResult.OK)
+            if (_algorithm != null)
             {
-                string path = sfd.FileName;
-
-                // TODO Wat is wenn ma nochnich der algo jelaufen is?
-                if (_algorithm.GetOutputData() != null)
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Title = "Speichern ...";
+                sfd.Filter = sfd.Filter = "xml files (*.xml)|*.xml";
+                if (sfd.ShowDialog() == DialogResult.OK)
                 {
+                    string path = sfd.FileName;                
                     _outputData = _algorithm.GetOutputData();
                     OutputWriter.Write(_outputData, sfd.FileName);
                 }
-                else
-                {
-                    MessageBox.Show("Noch keine Ausgabedaten vorhanden");
-                    return;
-                }
+            }
+            else
+            {
+                MessageBox.Show("Noch keine Ausgabedaten vorhanden");
+                return;
+            }
+        }
 
+        private void _smiBeendenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void FInput_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_drawForm != null && _drawForm._isClosed == false)
+            {
+                _drawForm.Invoke(new DrawFormCloseInvoker(_drawForm.Close));
             }
         }
 
@@ -152,7 +187,8 @@ namespace AntsTSP
                     break;
                 case "_tbAlpha":
                     double num;
-                    _alphaFehlerfrei = Double.TryParse(_tbAlpha.Text, out num) && CheckIfBetween(num, 0, 1, false);
+                    //_alphaFehlerfrei = Double.TryParse(_tbAlpha.Text, out num) && CheckIfBetween(num, 0, 1, false);
+                    _alphaFehlerfrei = Double.TryParse(_tbAlpha.Text, out num) && CheckIfDouble(_tbAlpha.Text);
                     _tbAlpha.BackColor = (_alphaFehlerfrei) ? _okCol : _errCol;
                     break;
                 case "_tbBeta":
@@ -184,34 +220,43 @@ namespace AntsTSP
 
         private void _btnStart_Click(object sender, EventArgs e)
         {
-            if (!CheckIfValid)
+            if (_btnStart.Text.Equals("Start"))
             {
-                MessageBox.Show(this, "Die eingegebenen Daten sind unvollständig oder fehlerhaft!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                if (!CheckIfValid)
+                {
+                    MessageBox.Show(this, "Die eingegebenen Daten sind unvollständig oder fehlerhaft!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (_tspFile == null || _tspFile.Koords.Count == 0 || _drawForm.IsDisposed == true)
+                {
+                    MessageBox.Show(this, "Es muss zuerst eine *.tsp-Datei geladen werden!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                _startTime = DateTime.Now;
+                _timer = new System.Windows.Forms.Timer();
+                _timer.Tick += new EventHandler(SetTimer);
+                _timer.Interval = 100;
+                _timer.Start();
+
+                _btnStart.Visible = false;
+                _btnStopp.Visible = true;
+
+                _algorithm = new Algorithm(this, _tspFile, _drawForm, double.Parse(_tbTau.Text),
+                    double.Parse(_tbQ.Text),
+                    double.Parse(_tbRho.Text),
+                    double.Parse(_tbAlpha.Text),
+                    double.Parse(_tbBeta.Text),
+                    int.Parse(_tbIterationCount.Text),
+                    int.Parse(_tbAntCount.Text),
+                    double.Parse(_tbMinTour.Text),
+                    double.Parse(_tbOptTour.Text));
             }
-            if (_tspFile == null)
-            {
-                MessageBox.Show(this, "Es muss zuerst eine *.tsp-Datei geladen werden!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+        }
 
-            _startTime = DateTime.Now;
-            _timer = new System.Windows.Forms.Timer();
-            _timer.Tick += new EventHandler(SetTimer);
-            _timer.Interval = 100;
-            _timer.Start();
-
-            _btnStart.Enabled = false;
-
-            _algorithm = new Algorithm(this, _tspFile, _drawForm, double.Parse(_tbTau.Text),
-                double.Parse(_tbQ.Text),
-                double.Parse(_tbRho.Text),
-                double.Parse(_tbAlpha.Text),
-                double.Parse(_tbBeta.Text),
-                int.Parse(_tbIterationCount.Text),
-                int.Parse(_tbAntCount.Text),
-                double.Parse(_tbMinTour.Text),
-                double.Parse(_tbOptTour.Text));
+        private void _btnStopp_Click(object sender, EventArgs e)
+        {
+            _algorithm.Stop();
         }
 
         #endregion
@@ -226,7 +271,14 @@ namespace AntsTSP
         private void SetTimer(object sender, EventArgs e)
         {
             _span = DateTime.Now - _startTime;
-            _lblTime.Text = "Zeit: " + _span.Minutes + ":" + _span.Seconds + ":" + _span.Milliseconds;
+            if (_span.Hours == 0)
+            {
+                _lblTime.Text = "Zeit: " + _span.Minutes + ":" + _span.Seconds + ":" + _span.Milliseconds;
+            }
+            else
+            {
+                _lblTime.Text = "Zeit: " + _span.Hours + ":" + _span.Minutes + ":" + _span.Seconds + ":" + _span.Milliseconds;
+            }
         }
 
         internal void SetBestTourGlobal(String global)
@@ -258,8 +310,14 @@ namespace AntsTSP
         {
             _lblIterCount.Text = numberOfIters.ToString();
         }
+        internal void SetNumberOfAnts(int numberOfAnts)
+        {
+            _lblAntCount.Text = numberOfAnts.ToString();    
+        }
 
         #endregion
+
+        #region OtherMethods
 
         public void ShowDrawForm()
         {
@@ -269,7 +327,8 @@ namespace AntsTSP
         public void StopTimer()
         {
             _timer.Stop();
-            _btnStart.Enabled = true;
+            _btnStart.Visible = true;
+            _btnStopp.Visible = false;
         }
 
         public int GetNumberOfCities()
@@ -291,85 +350,6 @@ namespace AntsTSP
             return _span;
         }
 
-        void oldstuff(){
-            //XmlTextWriter myXmlTextWriter = new XmlTextWriter(sfd.FileName, null);
-            //myXmlTextWriter.Formatting = Formatting.Indented;
-            //myXmlTextWriter.WriteStartDocument(false);
-            //myXmlTextWriter.WriteComment("This is a comment");
-
-            //myXmlTextWriter.WriteStartElement("bookstore");
-            //myXmlTextWriter.WriteStartElement("book", null);
-
-            //myXmlTextWriter.WriteElementString("title", null, "The Autobiography of Mark Twain");
-            //myXmlTextWriter.WriteStartElement("Author", null);
-
-            //myXmlTextWriter.WriteElementString("first-name", "Mark");
-            //myXmlTextWriter.WriteElementString("last-name", "Twain");
-            //myXmlTextWriter.WriteEndElement();
-            //myXmlTextWriter.WriteElementString("price", "7.99");
-            //myXmlTextWriter.WriteEndElement();
-
-            //myXmlTextWriter.Flush();
-            //myXmlTextWriter.WriteStartElement("book", null);
-            //myXmlTextWriter.WriteAttributeString("genre", "autobiography");
-            //myXmlTextWriter.WriteAttributeString("publicationdate", "1979");
-            //myXmlTextWriter.WriteAttributeString("ISBN", "0-7356-0562-9");
-            //myXmlTextWriter.WriteEndElement();
-            //myXmlTextWriter.WriteEndElement();
-
-            //myXmlTextWriter.Flush();
-            //myXmlTextWriter.Close();
-            //Console.ReadLine();
-
-            //ach ficken
-
-            //string path = _filePath;
-            //path +="\\" + id.ToString() + ".xml";
-            //XmlSerializer ser = new XmlSerializer(typeof(List<object[]>));
-            //FileStream str = new FileStream(@path, FileMode.Create);
-            //ser.Serialize(str, toWrite);
-
-            //XmlSerializer ser = new XmlSerializer(typeof(List<object>));
-            //FileStream sr = new FileStream(sfd.FileName, FileMode.Create);
-            //ser.Serialize(sr, _outputData);
-            //sr.Close();
-
-
-            //XmlTextWriter xmlWrite = new XmlTextWriter(sfd.FileName, null);//System.Text.Encoding.UTF8);
-            //xmlWrite.Formatting = Formatting.Indented;
-            //xmlWrite.WriteStartDocument();
-            //xmlWrite.WriteComment("This is a comment");
-
-            //xmlWrite.WriteStartElement("Auswertung des Ants TSP");
-            //xmlWrite.WriteElementString("Datum", "" + DateTime.Now);
-
-            //xmlWrite.WriteStartElement("Parameter für den Algorithmus");
-            //xmlWrite.WriteElementString("Alpha", _outputData._alpha.ToString());
-            //xmlWrite.WriteElementString("Beta", _outputData._beta.ToString());
-            //xmlWrite.WriteElementString("Tau", _outputData._tau.ToString());
-            //xmlWrite.WriteElementString("Q", _outputData._q.ToString());
-            //xmlWrite.WriteElementString("Rho", _outputData._rho.ToString());
-            //xmlWrite.WriteEndElement();
-
-            //xmlWrite.WriteStartElement("Anzahl der Iterationen und Ameisen");
-            //xmlWrite.WriteElementString("Ameisen", _outputData._antCount.ToString());
-            //xmlWrite.WriteElementString("Städte", _outputData._cityCount.ToString());
-            //xmlWrite.WriteElementString("Iterationen", _outputData._iterCount.ToString());
-            //xmlWrite.WriteEndElement();
-
-            //xmlWrite.WriteStartElement("Bestwerte");
-            //xmlWrite.WriteElementString("Kürzeste Tour", _outputData._bestLength.ToString());
-            //xmlWrite.WriteElementString("Weg der kürzesten Tour", _outputData._bestTour.ToString());
-            //xmlWrite.WriteElementString("Durchschnittliche Tour", _outputData._avrLength.ToString());
-            //xmlWrite.WriteElementString("Benötigte Zeit", _outputData._bestTimeAsString);
-            //xmlWrite.WriteEndElement();
-
-            //xmlWrite.WriteEndElement();
-            //xmlWrite.WriteEndDocument();
-
-            //xmlWrite.Flush();
-            //xmlWrite.Close();
-            //Console.ReadLine();
-        }
+        #endregion
     }
 }

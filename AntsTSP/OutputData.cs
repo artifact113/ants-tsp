@@ -11,11 +11,6 @@ namespace AntsTSP
     [XmlInclude(typeof(Point))]
     public class OutputData
     {
-        // TODO
-        // -Werte der Parameter
-        // -beste Tour(Koordinaten) + Länge + Zeit
-        // -durchschnittl. Tour + Länge
-
         public double _tau;
         public double _q;
         public double _rho;
@@ -30,7 +25,6 @@ namespace AntsTSP
 
         public double _bestLength;
         public String _bestTimeAsString;
-        //public ArrayList _avrTour = new ArrayList(); //ham wa nich
         public double _avrLength;
 
         private FInput _owner;
@@ -45,18 +39,14 @@ namespace AntsTSP
             _beta = beta;
             _antCount = antCount;
             _iterCount = iterCount;
-            //_cityCount = cityCount;
             _bestTour = best;
             _bestLength = bestL;
-            //_bestTimeAsString = bestT;
             _avrLength = avrL;
             _owner = owner;
 
             _cityCount = _owner.GetNumberOfCities();
             TimeSpan span = _owner.GetTime();
             _bestTimeAsString = "" + span.Minutes+":" + span.Seconds+":" + span.Milliseconds;
-
-
         }
 
         public OutputData()
