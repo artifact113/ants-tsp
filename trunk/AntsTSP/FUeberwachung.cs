@@ -110,30 +110,15 @@ namespace AntsTSP
 
         private void _smiTSPLadenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_drawForm != null)
-            {
-                _drawForm.Invoke(new DrawFormCloseInvoker(_drawForm.Close));
-            }
-
-            _tspFile = new LoadTSP();
-            if (_tspFile._doNotOpenTSPForm == false)
-            {
-                _drawForm = new FDrawForm(_tspFile, this);
-            }
+            bool tspIsEmtpy = false;
+            InitializeTSP(tspIsEmtpy);
+            
         }
 
         private void _smiLeeresTSPLadenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_drawForm != null)
-            {
-                _drawForm.Invoke(new DrawFormCloseInvoker(_drawForm.Close));
-            }
-
-            _tspFile = new LoadTSP(true);
-            if (_tspFile._doNotOpenTSPForm == false)
-            {
-                _drawForm = new FDrawForm(_tspFile, this);
-            }
+            bool tspIsEmtpy = true;
+            InitializeTSP(tspIsEmtpy);
         }
 
         private void tODOErgsSpeichernToolStripMenuItem_Click(object sender, EventArgs e)
@@ -152,7 +137,7 @@ namespace AntsTSP
             }
             else
             {
-                MessageBox.Show("Noch keine Ausgabedaten vorhanden");
+                MessageBox.Show(this, "Noch keine Ausgabedaten vorhanden", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -187,8 +172,7 @@ namespace AntsTSP
                     break;
                 case "_tbAlpha":
                     double num;
-                    //_alphaFehlerfrei = Double.TryParse(_tbAlpha.Text, out num) && CheckIfBetween(num, 0, 1, false);
-                    _alphaFehlerfrei = Double.TryParse(_tbAlpha.Text, out num) && CheckIfDouble(_tbAlpha.Text);
+                    _alphaFehlerfrei = Double.TryParse(_tbAlpha.Text, out num) && CheckIfBetween(num, 0, 1, false);
                     _tbAlpha.BackColor = (_alphaFehlerfrei) ? _okCol : _errCol;
                     break;
                 case "_tbBeta":
@@ -229,7 +213,7 @@ namespace AntsTSP
                 }
                 if (_tspFile == null || _tspFile.Koords.Count == 0 || _drawForm.IsDisposed == true)
                 {
-                    MessageBox.Show(this, "Es muss zuerst eine *.tsp-Datei geladen werden!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, "Es muss zuerst eine gültige *.tsp-Datei geladen oder erstellt werden!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -318,6 +302,26 @@ namespace AntsTSP
         #endregion
 
         #region OtherMethods
+
+        private void InitializeTSP(bool tspIsEmtpy)
+        {
+            if (_drawForm != null)
+            {
+                _drawForm.Invoke(new DrawFormCloseInvoker(_drawForm.Close));
+            }
+            if (tspIsEmtpy)
+            {
+                _tspFile = new LoadTSP(tspIsEmtpy);
+            }
+            else
+            {
+                _tspFile = new LoadTSP();
+            }
+            if (_tspFile._doNotOpenTSPForm == false)
+            {
+                _drawForm = new FDrawForm(_tspFile, this);
+            }
+        }
 
         public void ShowDrawForm()
         {

@@ -29,6 +29,8 @@ namespace AntsTSP
 
         private FInput _owner;
 
+        #region constructors
+
         public OutputData(double tau, double q, double rho, double alpha, double beta,
             int antCount, int iterCount, ArrayList best, double bestL, double avrL, FInput owner)
         {
@@ -53,5 +55,6 @@ namespace AntsTSP
         {
         }
 
+        #endregion
     }
 }

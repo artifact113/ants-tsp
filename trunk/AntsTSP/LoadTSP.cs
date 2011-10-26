@@ -20,6 +20,8 @@ namespace AntsTSP
             set { koords = value; }
         }
 
+        #region constructors
+
         public LoadTSP(bool emptyTSP)
         {
             _doNotOpenTSPForm = false;
@@ -79,5 +81,6 @@ namespace AntsTSP
                 myFile.Close();
             }
         }
+        #endregion
     }
 }
