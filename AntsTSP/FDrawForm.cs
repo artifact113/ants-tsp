@@ -113,7 +113,7 @@ namespace AntsTSP
         {
             if (_tspFile == null)
                 return;
-            
+
             double windowWidth = this.Width;
             double windowHeight = this.Height;
 
@@ -143,7 +143,7 @@ namespace AntsTSP
 
         #endregion
 
-        #region MouseEvents
+        #region Events
 
         private void FDrawForm_MouseClick(object sender, MouseEventArgs e)
         {
@@ -162,11 +162,12 @@ namespace AntsTSP
                 }
             }
         }
-        #endregion
 
         private void FDrawForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             _isClosed = true;
         }
+
+        #endregion
     }
 }
