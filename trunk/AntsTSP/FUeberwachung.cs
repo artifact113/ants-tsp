@@ -211,7 +211,7 @@ namespace AntsTSP
                     MessageBox.Show(this, "Die eingegebenen Daten sind unvollständig oder fehlerhaft!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (_tspFile == null || _tspFile.Koords.Count == 0 || _drawForm.IsDisposed == true)
+                if (_tspFile == null || _tspFile.Koords.Count == 0 || _drawForm.IsDisposed || _drawForm._isClosed)
                 {
                     MessageBox.Show(this, "Es muss zuerst eine gültige *.tsp-Datei geladen oder erstellt werden!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
