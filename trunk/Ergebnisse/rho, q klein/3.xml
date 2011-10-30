@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<OutputData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <_tau>1</_tau>
+  <_q>0.01</_q>
+  <_rho>0.3</_rho>
+  <_alpha>1</_alpha>
+  <_beta>1</_beta>
+  <_antCount>5</_antCount>
+  <_iterCount>30</_iterCount>
+  <_cityCount>52</_cityCount>
+  <_bestTour>
+    <anyType xsi:type="Point">
+      <X>650</X>
+      <Y>1130</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>525</X>
+      <Y>1000</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>475</X>
+      <Y>960</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>510</X>
+      <Y>875</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>555</X>
+      <Y>815</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>575</X>
+      <Y>665</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>605</X>
+      <Y>625</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>685</X>
+      <Y>610</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>685</X>
+      <Y>595</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>700</X>
+      <Y>580</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>720</X>
+      <Y>635</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>760</X>
+      <Y>650</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>795</X>
+      <Y>645</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>770</X>
+      <Y>610</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>830</X>
+      <Y>610</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>835</X>
+      <Y>625</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>845</X>
+      <Y>655</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>845</X>
+      <Y>680</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>880</X>
+      <Y>660</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>945</X>
+      <Y>685</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>975</X>
+      <Y>580</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>830</X>
+      <Y>485</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>700</X>
+      <Y>500</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>725</X>
+      <Y>370</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>595</X>
+      <Y>360</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>560</X>
+      <Y>365</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>480</X>
+      <Y>415</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>420</X>
+      <Y>555</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>520</X>
+      <Y>585</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>565</X>
+      <Y>575</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>415</X>
+      <Y>635</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>345</X>
+      <Y>750</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>145</X>
+      <Y>665</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>300</X>
+      <Y>465</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>95</X>
+      <Y>260</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>25</X>
+      <Y>230</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>25</X>
+      <Y>185</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>410</X>
+      <Y>250</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>660</X>
+      <Y>180</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>1170</X>
+      <Y>65</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>1215</X>
+      <Y>245</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>1320</X>
+      <Y>315</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>1250</X>
+      <Y>400</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>1220</X>
+      <Y>580</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>1340</X>
+      <Y>725</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>1605</X>
+      <Y>620</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>1740</X>
+      <Y>245</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>1465</X>
+      <Y>200</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>1530</X>
+      <Y>5</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>875</X>
+      <Y>920</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>1150</X>
+      <Y>1160</Y>
+    </anyType>
+    <anyType xsi:type="Point">
+      <X>580</X>
+      <Y>1175</Y>
+    </anyType>
+  </_bestTour>
+  <_bestLength>8715.4412585377486</_bestLength>
+  <_bestTimeAsString>0:27:453</_bestTimeAsString>
+  <_avrLength>14281.402282994064</_avrLength>
+</OutputData>
