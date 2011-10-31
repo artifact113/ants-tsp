@@ -1,0 +1,1468 @@
+<zuiprezi>
+  <version>3</version>
+  <zui-table>
+    <settings>
+      <autoplay>
+        <delay>4000</delay>
+      </autoplay>
+      <bounds x="-56808.854676818846" y="-44605.57637329102" width="147258.6546768188" height="89211.15274658204"/>
+    </settings>
+    <object id="1_3822589" type="button" x="0" y="0" r="0" s="142.14651489257813" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>799.3209994753411</w>
+        <h>627.5750000000004</h>
+      </size>
+    </object>
+    <object id="2" type="image" x="0" y="-386.3" r="0" s="25.00360679626465">
+      <source w="4096" h="3112">67098202.png<url>67098202.png</url>
+      </source>
+    <resource><id>
+        67098202
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/a/8/4/b4553defa723423746e6a3821509f12d91b1a.png</url></resource></object>
+    <object id="3" type="button" x="-11527.85" y="-19014.75" r="-13.53949280967101" s="94.24252788311038" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>770.2062500000004</w>
+        <h>118.71412594344518</h>
+      </size>
+    </object>
+    <object id="1" type="label" x="-11895" y="-18926.25" r="-13.520168775625665" s="144.69270755650734" class="head">
+      <textfield>
+        <x>-243.1</x>
+        <y>-28.5</y>
+        <text><![CDATA[Implementierung eines Lösungsansatz für das 
+- Ameisen Travelling Salesman Problem-]]></text>
+        <htmlText>
+          <P ALIGN="CENTER">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">Implementierung eines Lösungsansatz für das</FONT>
+          </P>
+          <P ALIGN="CENTER">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">- Ameisen Travelling Salesman Problem-</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-45 { align: center; }
+r45-83 { align: center; }</annotations>
+        <w>486.2</w>
+        <h>57</h>
+      </textfield>
+    </object>
+    <object id="3_3822589" type="button" x="-37938.65" y="-10727.95" r="-13.2533979067806" s="0.6138051654177984">
+      <type>invisible</type>
+      <size>
+        <w>1062.1975247524751</w>
+        <h>773.3000000000013</h>
+      </size>
+    </object>
+    <object id="5_3822589" type="image" x="-38127" y="-12231.6" r="-34.97153984522523" s="2.2640929915691475">
+      <source w="24" h="19">67111380.swf<url>67111380.swf</url>
+      </source>
+    <resource><id>
+        67111380
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/converted/2/5/b/b86263e0a229b4575ab282cb2baeaf3893613.swf</url></resource></object>
+    <object id="12_3822589" type="button" x="-37881.55" y="-10615.6" r="-13.253395784697547" s="0.2050265114766141" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>2205.825769445999</w>
+        <h>1020.2000000000004</h>
+      </size>
+    </object>
+    <object id="6_3822589" type="image" x="-38170.25" y="-12195.75" r="-53.62843616389901" s="2.26409291837161">
+      <source w="24" h="19">67111380.swf<url>67111380.swf</url>
+      </source>
+    <resource><id>
+        67111380
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/converted/2/5/b/b86263e0a229b4575ab282cb2baeaf3893613.swf</url></resource></object>
+    <object id="8_3822589" type="image" x="-38195.4" y="-12149.15" r="-63.41736271240649" s="2.261112682542047">
+      <source w="24" h="19">67111380.swf<url>67111380.swf</url>
+      </source>
+    <resource><id>
+        67111380
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/converted/2/5/b/b86263e0a229b4575ab282cb2baeaf3893613.swf</url></resource></object>
+    <object id="9_3822589" type="image" x="-38211.45" y="-12088.9" r="-63.31843797442219" s="2.2640931871620085">
+      <source w="24" h="19">67111380.swf<url>67111380.swf</url>
+      </source>
+    <resource><id>
+        67111380
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/converted/2/5/b/b86263e0a229b4575ab282cb2baeaf3893613.swf</url></resource></object>
+    <object id="11_3822589" type="label" x="-37978.75" y="-10894.3" r="-13.253396166672186" s="1.677302505950938" class="body">
+      <textfield>
+        <x>-106.35</x>
+        <y>-16.4</y>
+        <text><![CDATA[Ameisenalgorithmus]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Ameisenalgorithmus</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-18 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="1_3010626" type="button" x="-38042.75" y="-10116.2" r="-13.261136694006613" s="0.3158205469114868" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>1234.8682320441987</w>
+        <h>790.2499999999998</h>
+      </size>
+    </object>
+    <object id="2_3010626" type="image" x="-38037.8" y="-10095.75" r="-13.261135798868347" s="0.2855927660069349">
+      <source w="800" h="600">73163478.png<url>73163478.png</url>
+      </source>
+    <resource><id>
+        73163478
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/8/e/0/3085308c9e8cafb47f67cfedeedb0b7575478.png</url></resource></object>
+    <object id="13_3822589" type="label" x="-37876.15" y="-10593" r="-13.253394625944123" s="0.708840441693596" class="body">
+      <textfield>
+        <x>-265.65</x>
+        <y>-160.4</y>
+        <text><![CDATA[Lösung von NP-schweren Problemen
+
+Einsatz von Heuristiken
+
+Metaheuristiken sind Algorithmen zur näherungsweisen Lösung
+
+nutzen allgemeine und abstrakte algorithmische Regeln
+
+
+]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Lösung von NP-schweren Problemen</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Einsatz von Heuristiken</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Metaheuristiken sind Algorithmen zur näherungsweisen Lösung</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">nutzen allgemeine und abstrakte algorithmische Regeln</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+        </htmlText>
+        <annotations>r0-33 { bullet: true; }
+r0-33 { align: left; }
+r34-58 { bullet: true; }
+r34-58 { align: left; }
+r59-119 { bullet: true; }
+r59-119 { align: left; }
+r120-174 { bullet: true; }
+r120-174 { align: left; }</annotations>
+        <w>531.35</w>
+        <h>320.8</h>
+      </textfield>
+    </object>
+    <object id="0_4405165" type="button" x="34694.05" y="-20527.6" r="20.75244084480548" s="13.254168332738773" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>1145.2666666666669</w>
+        <h>653.55</h>
+      </size>
+    </object>
+    <object id="1_4405165" type="label" x="31339.25" y="-24949.4" r="20.75243859302374" s="44.596408301956345" class="strong">
+      <textfield>
+        <x>-41.25</x>
+        <y>-15.25</y>
+        <text><![CDATA[Agenda]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#270066" LETTERSPACING="0" KERNING="0">Agenda</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-6 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="0_4407698" type="label" x="34276.45" y="-20110.65" r="20.774029202489142" s="19.389045039375517" class="body">
+      <textfield>
+        <x>-210.95</x>
+        <y>-146</y>
+        <text><![CDATA[1. Einleitung/Aufgabenstellung
+2. Theoretische Hintergrundkenntnisse
+     2.1 Ameisensysteme
+     2.2 Travelling Salesman Problem
+3. Unser Projekt
+     3.1 XP-Techniken
+4. Implementierung
+5. ANTS TSP
+6. Fazit
+7. Ausblick]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">1. Einleitung/Aufgabenstellung</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">2. Theoretische Hintergrundkenntnisse</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">2.1 Ameisensysteme</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">2.2 Travelling Salesman Problem</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">3. Unser Projekt</FONT>
+          </P>
+          <P ALIGN="JUSTIFY">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">3.1 XP-Techniken</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">4. Implementierung</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">5. ANTS TSP</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">6. Fazit</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">7. Ausblick</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-31 { align: left; }
+r31-69 { align: left; }
+r69-93 { align: left; }
+r93-130 { align: left; }
+r130-147 { align: left; }
+r147-169 { align: justify; }
+r169-188 { align: left; }
+r188-200 { align: left; }
+r200-209 { align: left; }
+r209-220 { align: left; }</annotations>
+        <w>421.95</w>
+        <h>292</h>
+      </textfield>
+    </object>
+    <object id="0_3010626" type="shape" x="-37936.85" y="-10382.25" r="129.69502131953712" s="2.5860985930135367" class="line3">
+      <geom type="arrow">
+        <sp>-56.59340537985427 0</sp>
+        <ep>56.593405379854275 0</ep>
+        <t>8</t>
+      </geom>
+    </object>
+    <object id="3_3010626" type="label" x="-38152.1" y="-10186.5" r="-13.261135708043971" s="0.8699619489569116" class="head">
+      <textfield>
+        <x>-74.2</x>
+        <y>-15.25</y>
+        <text><![CDATA[reale Ameisen]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">reale Ameisen</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-13 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="4_3010626" type="shape" x="-37812.4" y="-10165.55" r="-11.905504995751656" s="1.8494682338911188" class="line3">
+      <geom type="arrow">
+        <sp>-31.383307726860803 0</sp>
+        <ep>31.3833077268608 0</ep>
+        <t>8</t>
+      </geom>
+    </object>
+    <object id="5_3010626" type="button" x="-37577.05" y="-10228.15" r="-13.26113608556405" s="0.44949005224928223" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>910.529396984926</w>
+        <h>563.3500000000008</h>
+      </size>
+    </object>
+    <object id="6_3010626" type="label" x="-37699.65" y="-10298" r="-13.261135708043971" s="0.8699619489569116" class="head">
+      <textfield>
+        <x>-101.4</x>
+        <y>-15.25</y>
+        <text><![CDATA[künstliche Ameisen]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">künstliche Ameisen</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-18 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="7_3010626" type="label" x="-37566.85" y="-10211.6" r="-13.261136641371406" s="0.6214013770012191" class="body">
+      <textfield>
+        <x>-305.2</x>
+        <y>-160.4</y>
+        <text><![CDATA[Unterschied zur Realität:
+
+o	algorithmische Implementierung mit diskreten  
+          Zeitschritten einfacher
+
+o	Erhalten ein Gedächtnis für ihren bisherigen Pfad und 
+          dessen Länge
+
+o	durch die Simulation von Verdunstung der       
+          Pheromone
+	
+]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Unterschied zur Realität:</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">o	algorithmische Implementierung mit diskreten</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Zeitschritten einfacher</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">o	Erhalten ein Gedächtnis für ihren bisherigen Pfad und</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">dessen Länge</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">o	durch die Simulation von Verdunstung der</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Pheromone</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-26 { align: left; }
+r27-76 { align: left; }
+r76-110 { align: left; }
+r111-168 { align: left; }
+r168-191 { align: left; }
+r192-242 { align: left; }
+r242-262 { align: left; }
+r262-265 { align: left; }</annotations>
+        <w>610.45</w>
+        <h>320.8</h>
+      </textfield>
+    </object>
+    <object id="8_3010626" type="shape" x="-37659.4" y="-10023.1" r="-39.05101002582257" s="2.385415594576866" class="line3">
+      <geom type="arrow">
+        <sp>48.37070589008943 0</sp>
+        <ep>-48.370705890089425 0</ep>
+        <t>8</t>
+      </geom>
+    </object>
+    <object id="9_3010626" type="button" x="-37744.45" y="-9795.55" r="-13.262821212836402" s="0.46963584255969537" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>1069.284920340867</w>
+        <h>600</h>
+      </size>
+    </object>
+    <object id="10_3010626" type="label" x="-37881.05" y="-9868.5" r="-13.26276107324791" s="0.8699619479479601" class="head">
+      <textfield>
+        <x>-131.4</x>
+        <y>-15.25</y>
+        <text><![CDATA[Anwendung Algorithmus]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">Anwendung Algorithmus</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-21 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="11_3010626" type="label" x="-37737.6" y="-9787.1" r="-13.262820723943003" s="0.7854004614840565" class="body">
+      <textfield>
+        <x>-315.55</x>
+        <y>-117.2</y>
+        <text><![CDATA[Anwendung in vielfältigen Bereichen
+
+Stärke = graphenbasierte Probleme
+
+Einteilung in Kategorien: > Routenplanung (routing) 
+                                                       > Zuordnung (assignment)
+                                                       > Ablaufplanung (scheduling)
+                                                       > Teilmengen (subset)
+]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Anwendung in vielfältigen Bereichen</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Stärke = graphenbasierte Probleme</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Einteilung in Kategorien: &gt; Routenplanung (routing)</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">&gt; Zuordnung (assignment)</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">&gt; Ablaufplanung (scheduling)</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">&gt; Teilmengen (subset)</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-36 { bullet: true; }
+r0-36 { align: left; }
+r37-71 { bullet: true; }
+r37-71 { align: left; }
+r72-125 { bullet: true; }
+r72-125 { align: left; }
+r125-205 { align: left; }
+r205-289 { align: left; }
+r289-366 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="12_3010626" type="button" x="-4668.9" y="-18686.7" r="-13.57860832461904" s="0.8197278339956203" class="circle">
+      <type>circle</type>
+      <size>
+        <w>759.2249999999999</w>
+        <h>759.2249999999999</h>
+      </size>
+    </object>
+    <object id="13_3010626" type="button" x="-4649.7" y="-18595.4" r="-13.490992902427163" s="0.35265565030467966" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>975.74047954866</w>
+        <h>600</h>
+      </size>
+    </object>
+    <object id="14_3010626" type="shape" x="-4703.2" y="-18804.5" r="165.3354772596298" s="0.6225628798691913" class="poly2">
+      <geom type="poly">
+        <p x="0" y="-134.5"/>
+        <p x="169.05" y="134.5"/>
+        <p x="-169.05" y="134.5"/>
+        <t>2</t>
+        <r>0</r>
+      </geom>
+    </object>
+    <object id="15_3010626" type="label" x="-4723.1" y="-18868.3" r="-13.49099510057386" s="0.8699618301786175" class="head">
+      <textfield>
+        <x>-63.85</x>
+        <y>-15.25</y>
+        <text><![CDATA[Allgemeines]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">Allgemeines</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-11 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="16_3010626" type="label" x="-4654.2" y="-18593.3" r="-13.490993810744584" s="0.6214013564537797" class="body">
+      <textfield>
+        <x>-242.5</x>
+        <y>-117.2</y>
+        <text><![CDATA[Handelsreisender möchte eine vorgegebene Menge von Städten nacheinander besuchen
+
+Am Ende = Rückkehr zum Ausgangsort
+
+Reise nennt man Tour durch alle Städte
+
+liefert Gesamtlänge für diese Tour ]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Handelsreisender möchte eine vorgegebene Menge von Städten nacheinander besuchen</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Am Ende = Rückkehr zum Ausgangsort</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Reise nennt man Tour durch alle Städte</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">liefert Gesamtlänge für diese Tour</FONT>
+            </LI>
+          </P>
+        </htmlText>
+        <annotations>r0-81 { bullet: true; }
+r0-81 { align: left; }
+r82-117 { bullet: true; }
+r82-117 { align: left; }
+r118-157 { bullet: true; }
+r118-157 { align: left; }
+r158-193 { bullet: true; }
+r158-193 { align: left; }</annotations>
+        <w>485.05</w>
+        <h>234.4</h>
+      </textfield>
+    </object>
+    <object id="17_3010626" type="button" x="-4280" y="-18131.8" r="-13.490994481429224" s="0.45232412964462654" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>1517.6194444444443</w>
+        <h>823.8000000000002</h>
+      </size>
+    </object>
+    <object id="18_3010626" type="label" x="-4556.2" y="-18220.55" r="-13.490995146781458" s="1.2428027198602185" class="head">
+      <textfield>
+        <x>-57.2</x>
+        <y>-15.25</y>
+        <text><![CDATA[Bedeutung]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">Bedeutung</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-9 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="19_3010626" type="label" x="-4273.95" y="-18107" r="-13.49099510057386" s="0.8699618301786175" class="body">
+      <textfield>
+        <x>-307.35</x>
+        <y>-146</y>
+        <text><![CDATA[eines der bekanntesten Probleme der Theoretischen und Praktischen Informatik
+
+Gründe: > Einfach zu verstehen
+                       > Schwer zu lösen
+
+    Leistungstest für Computerprogramme:
+
+In welcher Laufzeit finden sie Touren mit welcher Qualität?
+]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">eines der bekanntesten Probleme der Theoretischen und Praktischen Informatik</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Gründe: &gt; Einfach zu verstehen</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">&gt; Schwer zu lösen</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Leistungstest für Computerprogramme:</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">In welcher Laufzeit finden sie Touren mit welcher Qualität?</FONT>
+            </LI>
+          </P>
+        </htmlText>
+        <annotations>r0-77 { bullet: true; }
+r0-77 { align: left; }
+r78-109 { bullet: true; }
+r78-109 { align: left; }
+r109-150 { align: left; }
+r151-192 { align: left; }
+r193-253 { bullet: true; }
+r193-253 { align: left; }</annotations>
+        <w>614.75</w>
+        <h>292</h>
+      </textfield>
+    </object>
+    <object id="20_3010626" type="button" x="-3213.8" y="-18234.5" r="-13.320324288971973" s="0.5484521419600398" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>902.5196202531648</w>
+        <h>503.4</h>
+      </size>
+    </object>
+    <object id="7_3035591" type="image" x="-3129.4" y="-18244.3" r="-37.053650151052054" s="0.3557138705873314">
+      <source w="200" h="152">73186618.jpg<url>73186618.jpg</url>
+      </source>
+    <resource><id>
+        73186618
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/e/5/d/52ff9d9c92acc94223294e41e22390de389bf.jpg</url></resource></object>
+    <object id="0_3035591" type="label" x="-3348.65" y="-18310.7" r="-13.32032229332602" s="1.242802848309482" class="head">
+      <textfield>
+        <x>-93.85</x>
+        <y>-15.25</y>
+        <text><![CDATA[Praxisanwendung]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">Praxisanwendung</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-15 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="9_3035591" type="image" x="-3102.15" y="-18342.15" r="24.40804022821842" s="0.2696882748208918">
+      <source w="400" h="182">73186634.gif<url>73186634.gif</url>
+      </source>
+    <resource><id>
+        73186634
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/4/2/3/3ca298bc4c846c30846163ff01c9a94342b2a.gif</url></resource></object>
+    <object id="1_3035591" type="label" x="-3319.3" y="-18199" r="-13.320322222543458" s="0.6214013627204756" class="body">
+      <textfield>
+        <x>-136.6</x>
+        <y>-131.6</y>
+        <text><![CDATA[Netzfahrplan
+
+Lagerlogistik
+
+Tourenplanung
+
+Design von Mikrochips
+
+Genom-Sequenzierung]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Netzfahrplan</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Lagerlogistik</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Tourenplanung</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Design von Mikrochips</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Genom-Sequenzierung</FONT>
+            </LI>
+          </P>
+        </htmlText>
+        <annotations>r0-13 { bullet: true; }
+r0-13 { align: left; }
+r14-28 { bullet: true; }
+r14-28 { align: left; }
+r29-43 { bullet: true; }
+r29-43 { align: left; }
+r44-66 { bullet: true; }
+r44-66 { align: left; }
+r67-86 { bullet: true; }
+r67-86 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="10_3035591" type="image" x="-3058.55" y="-18217.7" r="8.148478216174194" s="0.2684630228868287">
+      <source w="265" h="248">73186637.jpg<url>73186637.jpg</url>
+      </source>
+    <resource><id>
+        73186637
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/5/3/6/c6e2c90c8fa0ca0b0a92ccb4a055ed1dd7e85.jpg</url></resource></object>
+    <object id="8_3035591" type="image" x="-3066.8" y="-18278.15" r="-13.320321695447262" s="0.14228450667766665">
+      <source w="500" h="361">73186630.jpg<url>73186630.jpg</url>
+      </source>
+    <resource><id>
+        73186630
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/d/5/9/8537fa692d8b90eb33b6ea8f3c28359a1f5f4.jpg</url></resource></object>
+    <object id="11_3035591" type="image" x="-3137.95" y="-18293.35" r="-13.320322930340792" s="0.028685655862724736">
+      <source w="2480" h="1754">73186673.jpg<url>73186673.jpg</url>
+      </source>
+    <resource><id>
+        73186673
+        </id><url>http://0103.static.prezi.com.s3.amazonaws.com/media/3/6/8/c70f66444523c3d7511eb92cbff6fdcb1027b.jpg</url></resource></object>
+    <object id="0_3752924" type="button" x="25894.05" y="10017.25" r="0" s="19.681594848632813">
+      <type>invisible</type>
+      <size>
+        <w>1622.078102189781</w>
+        <h>860.55</h>
+      </size>
+    </object>
+    <object id="2_3752924" type="button" x="33418.9" y="12913.8" r="0" s="8.422484397888184" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>1259.7090909090898</w>
+        <h>905.5</h>
+      </size>
+    </object>
+    <object id="3_3752924" type="button" x="19267.1" y="10023.9" r="0" s="8.422444343566895" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>1286.259090909091</w>
+        <h>955.95</h>
+      </size>
+    </object>
+    <object id="4_3752924" type="label" x="19260.4" y="3864.1" r="0" s="91.42857360839844" class="head">
+      <textfield>
+        <x>-91.1</x>
+        <y>-15.25</y>
+        <text><![CDATA[Implementierung]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">Implementierung</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-15 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="5_3752924" type="label" x="19266.6" y="10011.1" r="-0.0036078131483641713" s="16.04769519172664" class="body">
+      <textfield>
+        <x>-276</x>
+        <y>-160.4</y>
+        <text><![CDATA[
+• Eingabeteil der GUI: Eingabe der Parameter
+
+• Ausgabeteil: Anzeige der Bestwerte
+
+• TSP-Datei laden
+
+• Punkte per Mausklick hinzufügen
+
+• Erreichte Werte können in XML-Datei abgespeichert werden]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">• Eingabeteil der GUI: Eingabe der Parameter</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">• Ausgabeteil: Anzeige der Bestwerte</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">• TSP-Datei laden</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">• Punkte per Mausklick hinzufügen</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">• Erreichte Werte können in XML-Datei abgespeichert werden</FONT>
+          </P>
+        </htmlText>
+        <annotations>r1-46 { align: left; }
+r47-84 { align: left; }
+r85-103 { align: left; }
+r104-138 { align: left; }
+r139-197 { align: left; }</annotations>
+        <w>552</w>
+        <h>320.8</h>
+      </textfield>
+    </object>
+    <object id="6_3752924" type="label" x="16422.8" y="7053.5" r="-0.003608032820202464" s="32.000003878144945" class="head">
+      <textfield>
+        <x>-66.2</x>
+        <y>-15.25</y>
+        <text><![CDATA[Aufbau GUI]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">Aufbau GUI</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-10 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="7_3752924" type="label" x="33586" y="13238.65" r="-0.017875817694000627" s="18.10449306863599" class="body">
+      <textfield>
+        <x>-276</x>
+        <y>-146</y>
+        <text><![CDATA[
+• Städte in oberer Dreiecksmatrix angeordnet
+
+• Solange Ameise Städte noch nicht besucht hat, wird eine nächste Stadt
+
+ausgewählt
+
+• Ameise hat alle Städte besucht Pheromonupdate und Weg zeichnen]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">• Städte in oberer Dreiecksmatrix angeordnet</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">• Solange Ameise Städte noch nicht besucht hat, wird eine nächste Stadt</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">ausgewählt</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">• Ameise hat alle Städte besucht Pheromonupdate und Weg zeichnen</FONT>
+          </P>
+        </htmlText>
+        <annotations>r1-46 { align: left; }
+r47-119 { align: left; }
+r120-131 { align: left; }
+r132-196 { align: left; }</annotations>
+        <w>552</w>
+        <h>292</h>
+      </textfield>
+    </object>
+    <object id="8_3752924" type="label" x="30360.45" y="10237.6" r="-0.01787644439526989" s="22.399998801454036" class="head">
+      <textfield>
+        <x>-88.8</x>
+        <y>-15.25</y>
+        <text><![CDATA[Der Algorithmus]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">Der Algorithmus</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-15 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="14_3752924" type="button" x="-33416.5" y="7808" r="0" s="16.043476104736328" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>867.15</w>
+        <h>658.6</h>
+      </size>
+    </object>
+    <object id="11_3752924" type="label" x="-34676.25" y="8292.85" r="0" s="32.65306091308594" class="body">
+      <textfield>
+        <x>-159.1</x>
+        <y>-160.4</y>
+        <text><![CDATA[Iterationen
+
+Collective Code Ownership
+
+Planning Game (2mal)
+
+Story Cards
+
+Coding Standards (Code-Conventions)
+
+]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Iterationen</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Collective Code Ownership</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Planning Game (2mal)</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Story Cards</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Coding Standards (Code-Conventions)</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+        </htmlText>
+        <annotations>r0-12 { bullet: true; }
+r0-12 { align: left; }
+r13-39 { bullet: true; }
+r13-39 { align: left; }
+r40-61 { bullet: true; }
+r40-61 { align: left; }
+r62-74 { bullet: true; }
+r62-74 { align: left; }
+r75-111 { bullet: true; }
+r75-111 { align: left; }</annotations>
+        <w>318.25</w>
+        <h>320.8</h>
+      </textfield>
+    </object>
+    <object id="15_3752924" type="button" x="-16486.7" y="10020.05" r="0" s="13.528717041015625" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>1164.5235294117647</w>
+        <h>707.75</h>
+      </size>
+    </object>
+    <object id="12_3752924" type="label" x="-17123.9" y="10013.65" r="0" s="32.65306091308594" class="body">
+      <textfield>
+        <x>-214.75</x>
+        <y>-131.6</y>
+        <text><![CDATA[Pair Programming
+
+Onsite Customer
+
+Unit Tests (jedoch nicht automatisiert)
+
+Refactoring
+
+Standup-Meeting]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Pair Programming</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Onsite Customer</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Unit Tests (jedoch nicht automatisiert)</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Refactoring</FONT>
+            </LI>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <LI>
+              <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">Standup-Meeting</FONT>
+            </LI>
+          </P>
+        </htmlText>
+        <annotations>r0-17 { bullet: true; }
+r0-17 { align: left; }
+r18-34 { bullet: true; }
+r18-34 { align: left; }
+r35-75 { bullet: true; }
+r35-75 { align: left; }
+r76-88 { bullet: true; }
+r76-88 { align: left; }
+r89-104 { bullet: true; }
+r89-104 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="13_3752924" type="button" x="-23290.9" y="7364.8" r="0" s="32.726627349853516">
+      <type>invisible</type>
+      <size>
+        <w>1103.5867346938776</w>
+        <h>616.15</h>
+      </size>
+    </object>
+    <object id="16_3752924" type="label" x="-30528" y="-392.5" r="0" s="128" class="head">
+      <textfield>
+        <x>-75.85</x>
+        <y>-15.25</y>
+        <text><![CDATA[XP-Techniken]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">XP-Techniken</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-12 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="17_3752924" type="button" x="3347.55" y="-8314.55" r="-13.515697506145555" s="17.753429308930453" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>595.05</w>
+        <h>368.54999999999995</h>
+      </size>
+    </object>
+    <object id="18_3752924" type="label" x="304.05" y="-9595.3" r="-13.51380592237016" s="45.680164652075675" class="head">
+      <textfield>
+        <x>-27.95</x>
+        <y>-15.25</y>
+        <text><![CDATA[Fazit]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">Fazit</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-5 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="19_3752924" type="button" x="3347.6" y="-7742.1" r="-13.513806588818865" s="4.283294594878004" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>1471.4357142857143</w>
+        <h>731.95</h>
+      </size>
+    </object>
+    <object id="21_3752924" type="label" x="3347.5" y="-7742.25" r="-13.513806602940997" s="16.3265310967922" class="body">
+      <textfield>
+        <x>-166.1</x>
+        <y>-59.6</y>
+        <text><![CDATA[- Praktische Arbeit an Problem der theoretischen Informatik
+
+- Anwendung von XP Techniken]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">- Praktische Arbeit an Problem der theoretischen Informatik</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">- Anwendung von XP Techniken</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-60 { align: left; }
+r61-89 { align: left; }</annotations>
+        <w>332.25</w>
+        <h>119.2</h>
+      </textfield>
+    </object>
+    <object id="23_3752924" type="button" x="16434.65" y="-11441.6" r="-13.515697506145555" s="17.753429308930453" class="bracket">
+      <type>bracket</type>
+      <size>
+        <w>595.05</w>
+        <h>368.5499999999999</h>
+      </size>
+    </object>
+    <object id="24_3752924" type="label" x="14250.35" y="-12928.65" r="-13.51380592237016" s="45.680164652075675" class="head">
+      <textfield>
+        <x>-47.2</x>
+        <y>-15.25</y>
+        <text><![CDATA[Ausblick]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">Ausblick</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-8 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="25_3752924" type="button" x="16434.7" y="-10869.15" r="-13.513806588818865" s="4.283294594878004" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>1471.4357142857143</w>
+        <h>731.95</h>
+      </size>
+    </object>
+    <object id="26_3752924" type="label" x="16192.15" y="-10896" r="-13.513806602940997" s="16.3265310967922" class="body">
+      <textfield>
+        <x>-155.95</x>
+        <y>-74</y>
+        <text><![CDATA[- Umbau der GUI
+
+- Performance
+
+- Reload gespeicherter Dateien]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">- Umbau der GUI</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">- Performance</FONT>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0"/>
+          </P>
+          <P ALIGN="LEFT">
+            <FONT FACE="calluna-regular" SIZE="24" COLOR="#000000" LETTERSPACING="0" KERNING="0">- Reload gespeicherter Dateien</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-16 { align: left; }
+r17-31 { align: left; }
+r32-62 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="27_3752924" type="shape" x="9849.6" y="-9930.9" r="-12.24034314318234" s="31.999999811478553" class="line3">
+      <geom type="arrow">
+        <sp>-39.85605349253737 0</sp>
+        <ep>39.85605349253737 0</ep>
+        <t>8</t>
+      </geom>
+    </object>
+    <object id="28_3752924" type="button" x="35350.25" y="-6914.2" r="0" s="11.864532470703125">
+      <type>invisible</type>
+      <size>
+        <w>1305</w>
+        <h>600</h>
+      </size>
+    </object>
+    <object id="30_3752924" type="button" x="35305.75" y="-6869.7" r="0" s="10.233154296875" class="roundrect">
+      <type>roundrect</type>
+      <size>
+        <w>1278.2608695652175</w>
+        <h>600</h>
+      </size>
+    </object>
+    <object id="29_3752924" type="label" x="35069.05" y="-6914.1" r="0" s="91.42857360839844" class="head">
+      <textfield>
+        <x>-59.6</x>
+        <y>-15.25</y>
+        <text><![CDATA[Fragen ???]]></text>
+        <htmlText>
+          <P ALIGN="LEFT">
+            <FONT FACE="LiberationSerif-Bold" SIZE="24" COLOR="#003666" LETTERSPACING="0" KERNING="0">Fragen ???</FONT>
+          </P>
+        </htmlText>
+        <annotations>r0-10 { align: left; }</annotations>
+      </textfield>
+    </object>
+    <object id="31_3752924" type="shape" x="24888.05" y="-10209.4" r="32.77048604949284" s="63.99999931079093" class="line3">
+      <geom type="arrow">
+        <sp>-48.819905008100946 0</sp>
+        <ep>48.819905008100946 0</ep>
+        <t>8</t>
+      </geom>
+    </object>
+  </zui-table>
+  <path>
+    <o>1_3822589</o>
+    <o>1</o>
+    <o>0_4405165</o>
+    <o>1</o>
+    <o>3_3822589</o>
+    <o>12_3822589</o>
+    <o>1_3010626</o>
+    <o>5_3010626</o>
+    <o>9_3010626</o>
+    <o>1</o>
+    <o>12_3010626</o>
+    <o>13_3010626</o>
+    <o>17_3010626</o>
+    <o>20_3010626</o>
+    <o>11_3035591</o>
+    <o>20_3010626</o>
+    <o>8_3035591</o>
+    <o>20_3010626</o>
+    <o>9_3035591</o>
+    <o>20_3010626</o>
+    <o>7_3035591</o>
+    <o>20_3010626</o>
+    <o>10_3035591</o>
+    <o>20_3010626</o>
+    <o>1</o>
+    <o>13_3752924</o>
+    <o>11_3752924</o>
+    <o>12_3752924</o>
+    <o>0_3752924</o>
+    <o>5_3752924</o>
+    <o>2_3752924</o>
+    <o>17_3752924</o>
+    <o>19_3752924</o>
+    <o>23_3752924</o>
+    <o>25_3752924</o>
+    <o>28_3752924</o>
+    <o>1_3822589</o>
+  </path>
+  <style type="text/css"><![CDATA[
+@font-face
+{
+	src: url('LiberationSerif-Bold.swf');
+	fontFamily: strong;
+}
+
+@font-face
+{
+	src: url('LiberationSerif-Bold.swf');
+	fontFamily: head;
+}
+
+@font-face
+{
+	src: url('calluna-regular.swf');
+	fontFamily: body;
+}
+
+ZLabel
+{
+	padding: 1.2;
+}
+
+ZLabel.head
+{
+	color: #003666;
+	fontFamily: head;
+}
+
+.line5
+{
+	gradEndColor: #003666;
+	color: #003666;
+	gradStartColor: #003666;
+}
+
+.poly5
+{
+	borderColor: #003666;
+}
+
+ZLabel.strong
+{
+	color: #270066;
+	fontFamily: strong;
+}
+
+.line1
+{
+	gradEndColor: #270066;
+	color: #270066;
+	gradStartColor: #270066;
+}
+
+.poly1
+{
+	borderColor: #270066;
+}
+
+ZLabel.body
+{
+	color: #000;
+	fontFamily: body;
+}
+
+Background
+{
+	gradStart: #000;
+	gradEnd: #000;
+}
+
+Grid
+{
+	color: #000;
+}
+
+ZFrame.circle
+{
+	borderThickness: 0;
+	gradStartColor: #447aaa;
+	gradEndColor: #003666;
+	borderColor: #669ccc;
+}
+
+.line4
+{
+	gradEndColor: #003666;
+	color: #003666;
+	gradStartColor: #003666;
+}
+
+.poly4
+{
+	borderColor: #003666;
+}
+
+ZFrame.bracket
+{
+	borderThickness: 0;
+	gradStartColor: #f4ff44;
+	gradEndColor: #b0d100;
+	borderColor: #ff6;
+}
+
+.line2
+{
+	gradEndColor: #b0d100;
+	color: #b0d100;
+	gradStartColor: #b0d100;
+}
+
+.poly2
+{
+	borderColor: #b0d100;
+}
+
+ZFrame.roundrect
+{
+	borderThickness: 0;
+	gradStartColor: #d2f322;
+	gradEndColor: #b0d100;
+	borderColor: #ff6;
+}
+
+ZPoly
+{
+	borderThickness: 2;
+	gradStartColor: #288acc;
+	radius: 0;
+	thickness: 100;
+	borderColor: #288acc;
+	lockTintAlpha: 0.75;
+	gradEndAlpha: 0.4;
+	gradStartAlpha: 0.2;
+	gradEndColor: #288acc;
+	borderAlpha: 0.7;
+}
+
+ZCircle
+{
+	borderThickness: 2;
+	gradStartColor: #288acc;
+	radius: 0;
+	thickness: 100;
+	borderColor: #288acc;
+	lockTintAlpha: 0.75;
+	gradEndAlpha: 0.4;
+	gradStartAlpha: 0.2;
+	gradEndColor: #288acc;
+	borderAlpha: 0.7;
+}
+
+ZArrow
+{
+	borderThickness: 0;
+	gradStartColor: #e51600;
+	gradEndColor: #e51600;
+	borderColor: #ff624c;
+}
+
+.line3
+{
+	gradEndColor: #e51600;
+	color: #e51600;
+	gradStartColor: #e51600;
+}
+
+.poly3
+{
+	borderColor: #e51600;
+}
+
+ZLine
+{
+	color: #e51600;
+}
+
+ZCurveLine
+{
+	color: #e51600;
+}
+
+ZMarker
+{
+	color: #fe92c8;
+}
+
+ZPath
+{
+	textColor: #fff;
+	color: #40abe6;
+	alpha: 1;
+	thickness: 3;
+}
+
+ZPath Ball.base
+{
+	radius: 12;
+	alpha: 1;
+	fillColor: #40abe6;
+}
+
+ZPath Ball.mid
+{
+	radius: 8;
+	alpha: .5;
+	fillColor: #40abe6;
+}
+
+ZVideo
+{
+	padding: 1.2;
+}
+
+]]></style>
+  <hash>de88b06e857e1ed7b66517a0392889af</hash>
+<sync><oid>l34n4wo4ngim</oid><hash>de88b06e857e1ed7b66517a0392889af</hash></sync><config>gVn5wO7a3yp1wVraaCAKGNRWUDYY9tYAd7dNHvE8nxTRzZicte/LafxYVrmWHKwrxp9QMPJfDwxKi4t+2X+84yWRvBPYcaYuS/ppoQt1a1ySiXn7PUolxvawd+9J2+VYgzPp4OdyMyYn5NrNEJBtwQJHdvK5W8iV/0f3Ne6owpVxT7BXYtB2sf99ahp5Zv6LXtOldYwPLb9LNSvGm+/bPbm9t9IG3yUIQ+LSnhNNAv7kseck05ivDerjLnhYWjlU517rDYnZ31vSWmBzemnlrY/HLJCJRztmObXO47KzvAEetGXUOYo3CaQk0YcD5rAtZb3m/Ol8gAX7cy7EDF4A0A==</config></zuiprezi>
